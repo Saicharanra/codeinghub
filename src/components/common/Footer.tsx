@@ -1,91 +1,99 @@
 import React from "react";
 import Link from "next/link";
-import { Terminal, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-white/[0.08] bg-[#06080e]/95 text-slate-400 mt-20 relative">
-      {/* Top accent light */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-400/40 via-violet-500/40 to-transparent" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 via-violet-500 to-fuchsia-500 p-[1.5px] shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-                <div className="w-full h-full bg-[#080b14] rounded-[10px] flex items-center justify-center">
-                  <Terminal className="w-4 h-4 text-cyan-400" />
-                </div>
+    <footer className="w-full border-t border-[#E7E7E3] bg-[#FAFAF8] text-[#737373] mt-24">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          {/* Brand & Description */}
+          <div className="space-y-3">
+            <Link href="/" className="flex items-center gap-2 text-[#202124]">
+              <div className="w-5 h-5 rounded bg-[#176B50] flex items-center justify-center text-white text-[10px] font-semibold">
+                CH
               </div>
-              <span className="text-xl font-extrabold text-white tracking-tight">
-                Coding<span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">Hub</span>
-              </span>
+              <span className="font-semibold text-sm tracking-tight">Coding Hub</span>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              Free, fast, and privacy-focused online tools for college students, software engineers, and analytics learners. No bloated frameworks, zero intrusive popups.
+            <p className="text-xs text-[#737373] leading-relaxed max-w-xs">
+              Simple, free, and practical tools for students, developers, and data learners. Built for usability, client-side privacy, and clean reading.
             </p>
-            <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>100% In-Browser Execution • Zero Server Logs</span>
-            </div>
           </div>
 
-          {/* Student Tools */}
+          {/* Tools Navigation */}
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-200 mb-4">
-              Student Calculators
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#202124] mb-3">
+              Tools
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/tools/cgpa-calculator" className="hover:text-cyan-400 transition-colors">
+                <Link href="/tools/cgpa-calculator" className="hover:text-[#176B50] transition-colors">
                   CGPA Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/tools/percentage-calculator" className="hover:text-cyan-400 transition-colors">
+                <Link href="/tools/percentage-calculator" className="hover:text-[#176B50] transition-colors">
                   Percentage Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/tools/attendance-calculator" className="hover:text-cyan-400 transition-colors">
+                <Link href="/tools/attendance-calculator" className="hover:text-[#176B50] transition-colors">
                   Attendance Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="text-xs text-cyan-400 hover:text-cyan-300 font-mono font-medium pt-1 inline-block">
-                  View All Tools &rarr;
+                <Link href="/tools/json-formatter" className="hover:text-[#176B50] transition-colors">
+                  JSON Formatter
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/word-counter" className="hover:text-[#176B50] transition-colors">
+                  Word Counter
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/text-case-converter" className="hover:text-[#176B50] transition-colors">
+                  Text Case Converter
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Developer Tools */}
+          {/* Learning Resources */}
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-200 mb-4">
-              Developer Utilities
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#202124] mb-3">
+              Learning Resources
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/tools/json-formatter" className="hover:text-violet-400 transition-colors">
-                  JSON Formatter & Validator
+                <Link href="/tutorials/python" className="hover:text-[#176B50] transition-colors">
+                  Python Programming
                 </Link>
               </li>
               <li>
-                <Link href="/tools/word-counter" className="hover:text-violet-400 transition-colors">
-                  Word & Character Counter
+                <Link href="/tutorials/sql" className="hover:text-[#176B50] transition-colors">
+                  SQL & Databases
                 </Link>
               </li>
               <li>
-                <Link href="/tools/text-case-converter" className="hover:text-violet-400 transition-colors">
-                  Text Case Converter
+                <Link href="/tutorials/power-bi" className="hover:text-[#176B50] transition-colors">
+                  Power BI & DAX
                 </Link>
               </li>
               <li>
-                <Link href="/tutorials" className="text-xs text-violet-400 hover:text-violet-300 font-mono font-medium pt-1 inline-block">
-                  Explore Tech Guides &rarr;
+                <Link href="/tutorials/data-analytics" className="hover:text-[#176B50] transition-colors">
+                  Data Analytics
+                </Link>
+              </li>
+              <li>
+                <Link href="/tutorials/web-development" className="hover:text-[#176B50] transition-colors">
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link href="/tutorials/java" className="hover:text-[#176B50] transition-colors">
+                  Java Programming
                 </Link>
               </li>
             </ul>
@@ -93,28 +101,28 @@ export default function Footer() {
 
           {/* About & Legal */}
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-200 mb-4">
-              Platform & Legal
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#202124] mb-3">
+              About & Legal
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/about" className="hover:text-slate-200 transition-colors">
-                  About Coding Hub
+                <Link href="/about" className="hover:text-[#176B50] transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-slate-200 transition-colors">
-                  Contact Support
+                <Link href="/contact" className="hover:text-[#176B50] transition-colors">
+                  Contact
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors">
+                <Link href="/privacy-policy" className="hover:text-[#176B50] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-slate-200 transition-colors">
-                  Terms & Conditions
+                <Link href="/terms" className="hover:text-[#176B50] transition-colors">
+                  Terms and Conditions
                 </Link>
               </li>
             </ul>
@@ -122,22 +130,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-          <p>
-            &copy; {currentYear} Coding Hub. Free and open for students and engineers worldwide.
-          </p>
+        <div className="mt-12 pt-6 border-t border-[#E7E7E3] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#737373]">
+          <p>&copy; {currentYear} Coding Hub. All calculations run locally in your browser.</p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy-policy" className="hover:text-slate-300">
-              Cookie Policy
+            <Link href="/privacy-policy" className="hover:text-[#202124]">
+              Privacy
             </Link>
             <span>&bull;</span>
-            <Link href="/terms" className="hover:text-slate-300">
-              Terms of Use
+            <Link href="/terms" className="hover:text-[#202124]">
+              Terms
             </Link>
             <span>&bull;</span>
-            <span className="text-slate-400">
-              Crafted with care
-            </span>
+            <Link href="/contact" className="hover:text-[#202124]">
+              Feedback
+            </Link>
           </div>
         </div>
       </div>

@@ -1,136 +1,97 @@
 import React from "react";
 import { Metadata } from "next";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import PageHeader from "@/components/common/PageHeader";
+import ToolLayout from "@/components/tools/shared/ToolLayout";
 import PercentageCalculator from "@/components/tools/PercentageCalculator";
-import AdSlot from "@/components/ads/AdSlot";
-import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
-import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Percentage Calculator - Fast Exam Marks & Score Percentage Tool",
+  title: "Percentage Calculator - Marks %, Number %, & Percentage Change",
   description:
-    "Free online percentage calculator. Convert obtained marks into percentages, calculate percentage changes, and compute fractional ratios instantly with clear step-by-step formulas.",
+    "Free online percentage calculator with three distinct calculation modes: calculate exam marks percentages, compute percentages of numbers, and evaluate percentage increase or decrease.",
   canonicalUrl: "/tools/percentage-calculator",
 });
 
 export default function PercentageCalculatorPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Coding Hub Percentage Calculator",
-    applicationCategory: "EducationalApplication",
-    operatingSystem: "All",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
+  const howToUseSteps = [
+    {
+      title: "Choose Mode",
+      description: "Select between Mode A (Exam Marks Percentage), Mode B (Percentage of a Number), or Mode C (Percentage Change).",
     },
-    description:
-      "Instant percentage calculator for test scores, academic marks, and score differences.",
-  };
+    {
+      title: "Enter Numerical Values",
+      description: "Fill in the required fields. Decimal values and negative numbers (for change mode) are automatically validated.",
+    },
+    {
+      title: "Inspect Instant Results",
+      description: "The calculated percentage, step explanation, and ratio appear instantly without needing page reloads.",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "How is percentage calculated from exam marks?",
+      answer: "Percentage is determined by dividing marks obtained by total maximum marks and multiplying by 100: (Obtained / Total) × 100.",
+    },
+    {
+      question: "What does percentage change represent?",
+      answer: "Percentage change quantifies the relative difference between an original value and a new value. A positive percentage indicates an increase, while a negative percentage indicates a decrease.",
+    },
+    {
+      question: "Why can't the original value be zero in percentage change?",
+      answer: "Percentage change divides the difference by the absolute value of the original number. When the original value is zero, this results in an undefined mathematical division by zero.",
+    },
+    {
+      question: "Can percentage exceed 100%?",
+      answer: "Yes. When the obtained value exceeds the baseline total (such as bonus exam questions or traffic growth greater than 2x), the percentage is legitimately over 100%.",
+    },
+  ];
+
+  const explanationContent = (
+    <div className="space-y-4">
+      <div>
+        <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#202124] mb-1">
+          1. Marks Percentage Formula
+        </h4>
+        <div className="p-3 rounded bg-[#FAFAF8] border border-[#E7E7E3] font-mono text-xs text-[#176B50]">
+          Percentage (%) = (Marks Obtained / Total Maximum Marks) × 100
+        </div>
+      </div>
+
+      <div>
+        <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#202124] mb-1">
+          2. Percentage of a Number Formula
+        </h4>
+        <div className="p-3 rounded bg-[#FAFAF8] border border-[#E7E7E3] font-mono text-xs text-[#176B50]">
+          Result = (Percentage Rate / 100) × Base Number
+        </div>
+      </div>
+
+      <div>
+        <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#202124] mb-1">
+          3. Percentage Change Formula
+        </h4>
+        <div className="p-3 rounded bg-[#FAFAF8] border border-[#E7E7E3] font-mono text-xs text-[#176B50]">
+          Percentage Change (%) = ( (New Value - Original Value) / |Original Value| ) × 100
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="py-6 sm:py-10 space-y-10">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <Breadcrumbs
-        items={[
-          { label: "Tools", href: "/tools" },
-          { label: "Percentage Calculator" },
-        ]}
-      />
-
-      <PageHeader
-        badge="Instant Calculation"
-        badgeColor="indigo"
-        title="Academic & Score Percentage Calculator"
-        description="Determine your exam score percentage, analyze percentage differences, or find exact numerical ratios with zero latency."
-      />
-
+    <ToolLayout
+      toolId="percentage-calculator"
+      category="Student Tools"
+      title="Academic & Score Percentage Calculator"
+      description="Quickly compute exam score percentages, calculate exact percentages of numbers, or determine percentage increase and decrease."
+      breadcrumbLabel="Percentage Calculator"
+      schemaApplicationCategory="EducationalApplication"
+      howToUseSteps={howToUseSteps}
+      explanationTitle="Mathematical Formulas & Derivations"
+      explanationContent={explanationContent}
+      faqs={faqs}
+      relatedCategory="Student Tools"
+    >
       <PercentageCalculator />
-
-      <AdSlot slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT} label="Sponsored Placement" />
-
-      {/* SEO Explanations & Reference Guide */}
-      <section className="mt-16 space-y-8 border-t border-slate-800 pt-12 text-slate-300">
-        <div className="max-w-4xl space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Understanding Percentage Calculations in Academics and Analytics
-          </h2>
-          <p className="text-sm sm:text-base leading-relaxed text-slate-400">
-            A percentage represents a dimensionless number or ratio expressed as a fraction of 100. It is denoted using the percent sign &quot;%&quot;. In academic settings, percentages standardize student performance across courses with unequal point maximums.
-          </p>
-
-          <h3 className="text-xl font-bold text-white pt-2">
-            Exam Marks to Percentage Formula
-          </h3>
-          <p className="text-sm leading-relaxed text-slate-400">
-            To determine the percentage score on an examination or course:
-          </p>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs sm:text-sm text-indigo-300">
-            Score Percentage (%) = (Marks Obtained / Total Maximum Marks) × 100
-          </div>
-
-          <h3 className="text-xl font-bold text-white pt-2">
-            Percentage Increase vs. Percentage Decrease
-          </h3>
-          <p className="text-sm leading-relaxed text-slate-400">
-            When tracking performance improvement across semesters or monitoring website traffic growth, you calculate percentage change:
-          </p>
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs sm:text-sm text-indigo-300">
-            Percentage Change (%) = ( (New Value - Original Value) / |Original Value| ) × 100
-          </div>
-
-          {/* FAQs */}
-          <h3 className="text-xl font-bold text-white pt-4">Frequently Asked Questions</h3>
-          <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800 space-y-1.5">
-              <h4 className="text-sm font-semibold text-white">
-                How do I calculate percentage when maximum marks are different for each subject?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Sum all the marks you obtained across all subjects to get your total obtained score. Then sum the maximum marks across all subjects. Divide total obtained marks by total maximum marks and multiply by 100.
-              </p>
-            </div>
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800 space-y-1.5">
-              <h4 className="text-sm font-semibold text-white">
-                What does a negative percentage change mean?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                A negative percentage change indicates a percentage reduction or drop relative to the baseline initial number.
-              </p>
-            </div>
-          </div>
-
-          {/* Cross Links */}
-          <div className="pt-6">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-              Explore More Tools
-            </h4>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/cgpa-calculator"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              >
-                <span>CGPA Calculator</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <Link
-                href="/tools/attendance-calculator"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              >
-                <span>Attendance Calculator</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </ToolLayout>
   );
 }

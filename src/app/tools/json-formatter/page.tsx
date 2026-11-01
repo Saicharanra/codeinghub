@@ -1,154 +1,79 @@
 import React from "react";
 import { Metadata } from "next";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import PageHeader from "@/components/common/PageHeader";
+import ToolLayout from "@/components/tools/shared/ToolLayout";
 import JsonFormatter from "@/components/tools/JsonFormatter";
-import AdSlot from "@/components/ads/AdSlot";
-import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
-import { ArrowRight, ShieldCheck, Lock } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
-  title: "JSON Formatter & Validator - Free Online Beautifier & Minifier",
+  title: "JSON Formatter & Validator - Clean, Indent & Minify JSON Online",
   description:
-    "Format, validate, beautify, and minify JSON online with line-accurate error highlighting. 100% private and processed locally in your browser with zero server uploads.",
+    "Free online JSON Formatter, Validator, and Minifier. Clean messy API responses with 2 or 4 spaces, locate syntax errors with line/column pointers, and minify JSON with zero server uploads.",
   canonicalUrl: "/tools/json-formatter",
 });
 
 export default function JsonFormatterPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Coding Hub JSON Formatter & Validator",
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "All",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
+  const howToUseSteps = [
+    {
+      title: "Paste Raw JSON",
+      description: "Paste your raw JSON string, unformatted API payload, or config object into the input editor.",
     },
-    description:
-      "Privacy-first JSON beautifier, syntax checker, and minifier running entirely in the client browser.",
-  };
+    {
+      title: "Choose Formatting",
+      description: "Switch between 2 Spaces (compact readability), 4 Spaces (standard), or Minify (single-line payload reduction).",
+    },
+    {
+      title: "Copy or Download",
+      description: "Verify syntax validity in real-time, then use the one-click copy button or download as a .json file.",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "Is it safe to format sensitive JSON data here?",
+      answer: "Yes, completely safe. Coding Hub processes and formats JSON strictly within your local browser memory using native JavaScript JSON.parse and JSON.stringify. Nothing is transmitted over the internet or saved to external servers.",
+    },
+    {
+      question: "Why does standard JSON forbid single quotes?",
+      answer: "The official RFC 8259 and ECMA-404 JSON specifications mandate that all strings and object keys must be enclosed in double quotes (\"). Single quotes ('') will trigger instant syntax parser rejection.",
+    },
+    {
+      question: "What causes 'Unexpected token' syntax errors in JSON?",
+      answer: "Common triggers include trailing commas after the final element in arrays or objects, unquoted keys, comments (which standard JSON does not support), and unescaped control characters such as raw tabs or unescaped newlines within strings.",
+    },
+    {
+      question: "What is the difference between formatted and minified JSON?",
+      answer: "Formatted JSON includes whitespace indentation and line breaks for human readability. Minified JSON strips all non-essential whitespace characters to reduce file transfer size across network connections.",
+    },
+  ];
+
+  const explanationContent = (
+    <div className="space-y-3">
+      <p>
+        JSON (JavaScript Object Notation) is a lightweight, language-independent data-interchange format. This tool implements the RFC 8259 standard:
+      </p>
+      <div className="p-3.5 rounded-lg bg-[#FAFAF8] border border-[#E7E7E3] font-mono text-xs text-[#202124] space-y-1">
+        <div>1. Object keys must be enclosed in double quotation marks: <code>&quot;key&quot;: &quot;value&quot;</code></div>
+        <div>2. Trailing commas are strictly prohibited: <code>[1, 2, 3]</code>, not <code>[1, 2, 3,]</code></div>
+        <div>3. Values can only be strings, numbers, objects, arrays, booleans, or null.</div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="py-6 sm:py-10 space-y-10">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <Breadcrumbs
-        items={[
-          { label: "Tools", href: "/tools" },
-          { label: "JSON Formatter" },
-        ]}
-      />
-
-      <PageHeader
-        badge="Developer Utility"
-        badgeColor="indigo"
-        title="JSON Formatter, Validator & Beautifier"
-        description="Clean up unformatted API responses, validate JSON syntax against RFC 8259 specifications, and switch between 2-space, 4-space, or compact minification with zero telemetry."
-      />
-
-      {/* Main Interactive Tool */}
+    <ToolLayout
+      toolId="json-formatter"
+      category="Developer Tools"
+      title="JSON Formatter, Validator & Beautifier"
+      description="Format, validate, and minify JSON payloads in your browser. Inspect syntax errors with line/column coordinates and download clean files with 100% privacy."
+      breadcrumbLabel="JSON Formatter"
+      schemaApplicationCategory="DeveloperApplication"
+      howToUseSteps={howToUseSteps}
+      explanationTitle="JSON Specifications & RFC 8259 Compliance"
+      explanationContent={explanationContent}
+      faqs={faqs}
+      relatedCategory="Developer Tools"
+    >
       <JsonFormatter />
-
-      <AdSlot slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT} label="Sponsored Placement" />
-
-      {/* Security Reassurance Callout */}
-      <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-600/30 flex items-center gap-3 text-xs sm:text-sm text-emerald-300">
-        <Lock className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-        <span>
-          <strong>100% Client-Side Privacy:</strong> Your JSON strings, API keys, and sensitive database objects are parsed exclusively in your device&apos;s local browser memory. No data is ever transmitted to our servers.
-        </span>
-      </div>
-
-      {/* Technical Guide & Best Practices */}
-      <section className="mt-16 space-y-8 border-t border-slate-800 pt-12 text-slate-300">
-        <div className="max-w-4xl space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-            What is JSON and Why Does Formatting Matter?
-          </h2>
-          <p className="text-sm sm:text-base leading-relaxed text-slate-400">
-            JSON (JavaScript Object Notation, standardized under RFC 8259 and ECMA-404) is the universal lightweight data-interchange format across the web. Almost every modern REST API, GraphQL endpoint, and cloud database relies on JSON to transfer structured payloads between frontend clients and backend servers.
-          </p>
-
-          <h3 className="text-xl font-bold text-white pt-2">
-            Top 4 Most Common JSON Syntax Errors
-          </h3>
-          <div className="space-y-3 text-sm text-slate-400">
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800">
-              <strong className="text-white block mb-1">1. Trailing Commas</strong>
-              While JavaScript arrays and objects tolerate trailing commas, standard JSON strictly forbids commas following the final key-value pair or array item (e.g. <code>&#123;&quot;a&quot;: 1,&#125;</code> is invalid).
-            </div>
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800">
-              <strong className="text-white block mb-1">2. Single Quotes Instead of Double Quotes</strong>
-              Keys and string values in JSON must always be enclosed in double quotation marks (<code>&quot;key&quot;</code>). Single quotes (<code>&apos;key&apos;</code>) trigger instant parser rejection.
-            </div>
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800">
-              <strong className="text-white block mb-1">3. Unquoted Object Keys</strong>
-              Unlike JavaScript object literals, every property key in a JSON object must be a double-quoted string.
-            </div>
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800">
-              <strong className="text-white block mb-1">4. Unescaped Control Characters</strong>
-              Newlines, tabs, and backslashes inside string literals must be escaped (<code>\n</code>, <code>\t</code>, <code>\\</code>).
-            </div>
-          </div>
-
-          {/* FAQs */}
-          <h3 className="text-xl font-bold text-white pt-4">Frequently Asked Questions</h3>
-          <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800 space-y-1.5">
-              <h4 className="text-sm font-semibold text-white">
-                When should I use minification over pretty-printing?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Use 2-space or 4-space pretty printing during development, code reviews, and debugging to maximize human readability. Use minified JSON in production network payloads to strip out all non-essential whitespace, reducing file sizes and bandwidth overhead.
-              </p>
-            </div>
-            <div className="p-4 rounded-xl bg-surface-card border border-slate-800 space-y-1.5">
-              <h4 className="text-sm font-semibold text-white">
-                Is my data sent to any third-party analytics?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Absolutely not. Coding Hub executes JSON validation directly using the native Web JavaScript <code>JSON.parse()</code> and <code>JSON.stringify()</code> engine on your machine.
-              </p>
-            </div>
-          </div>
-
-          {/* Related Tools */}
-          <div className="pt-6">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-              Developer Utilities
-            </h4>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/text-case-converter"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              >
-                <span>Text Case Converter</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <Link
-                href="/tools/word-counter"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              >
-                <span>Word & Character Counter</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <Link
-                href="/tutorials/javascript"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              >
-                <span>JavaScript Deep Dive</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </ToolLayout>
   );
 }

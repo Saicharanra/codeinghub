@@ -3,15 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Code2,
-  Search,
-  Menu,
-  X,
-  Sparkles,
-  ChevronRight,
-  Terminal,
-} from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import SearchModal from "./SearchModal";
 
 export default function Navbar() {
@@ -21,10 +13,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Tools", href: "/tools", badge: "6 Tools" },
-    { name: "Tutorials", href: "/tutorials", badge: "Guides" },
+    { name: "Tools", href: "/tools" },
+    { name: "Tutorials", href: "/tutorials" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
   ];
 
   const isActive = (path: string) => {
@@ -34,126 +25,91 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-white/[0.07] bg-[#06080e]/85 backdrop-blur-xl transition-all">
-        {/* Subtle accent top line */}
-        <div className="h-[1.5px] w-full bg-gradient-to-r from-transparent via-cyan-400/60 via-violet-500/60 to-transparent" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo */}
+      <header className="sticky top-0 z-40 w-full border-b border-[#E7E7E3] bg-[#FAFAF8]/95 backdrop-blur-md">
+        <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Left: Logo & Wordmark */}
             <Link
               href="/"
-              className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-xl p-1"
+              className="flex items-center gap-2.5 text-[#202124] hover:text-[#176B50] transition-colors focus:outline-none"
             >
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 via-violet-500 to-fuchsia-500 p-[1.5px] shadow-[0_0_20px_rgba(139,92,246,0.35)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] group-hover:scale-105 transition-all duration-300">
-                <div className="w-full h-full bg-[#080b14] rounded-[10px] flex items-center justify-center">
-                  <Terminal className="w-5 h-5 text-cyan-400 group-hover:text-violet-400 transition-colors" />
-                </div>
+              <div className="w-6 h-6 rounded bg-[#176B50] flex items-center justify-center text-white text-xs font-semibold tracking-tighter">
+                CH
               </div>
-              <div>
-                <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-slate-100">
-                  Coding<span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">Hub</span>
-                </span>
-                <span className="hidden sm:block text-[10px] font-mono tracking-wider text-slate-500 -mt-1">
-                  DEV &bull; CALCULATE &bull; LEARN
-                </span>
-              </div>
+              <span className="font-semibold text-base tracking-tight text-[#202124]">
+                Coding Hub
+              </span>
             </Link>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Center: Clean Navigation Links */}
+            <nav className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
+                  className={`text-sm transition-colors ${
                     isActive(link.href)
-                      ? "text-white bg-white/[0.08] shadow-inner border border-white/[0.08]"
-                      : "text-slate-400 hover:text-white hover:bg-white/[0.04]"
+                      ? "text-[#176B50] font-medium"
+                      : "text-[#737373] hover:text-[#202124]"
                   }`}
                 >
-                  <span>{link.name}</span>
-                  {link.badge && (
-                    <span className="ml-1.5 text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-violet-950/80 text-violet-300 border border-violet-700/50">
-                      {link.badge}
-                    </span>
-                  )}
+                  {link.name}
                 </Link>
               ))}
             </nav>
 
-            {/* Desktop Actions */}
+            {/* Right: Search Button */}
             <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-white/[0.08] bg-[#0c101c]/80 hover:bg-[#151d33] text-slate-400 hover:text-slate-200 text-xs transition-all shadow-sm hover:border-violet-500/40 group"
-                aria-label="Open search modal"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-[#E7E7E3] bg-[#FFFFFF] hover:border-[#D3D3CD] text-[#737373] hover:text-[#202124] text-xs transition-colors shadow-subtle"
+                aria-label="Search tools and guides"
               >
-                <Search className="w-3.5 h-3.5 text-cyan-400 group-hover:text-violet-400 transition-colors" />
-                <span>Search tools & guides...</span>
-                <kbd className="ml-2 px-1.5 py-0.5 rounded bg-white/[0.06] text-[10px] font-mono text-slate-400 border border-white/[0.08]">
-                  Ctrl K
+                <Search className="w-3.5 h-3.5 text-[#737373]" />
+                <span>Search</span>
+                <kbd className="ml-2 px-1.5 py-0.5 rounded bg-[#FAFAF8] text-[10px] font-mono text-[#737373] border border-[#E7E7E3]">
+                  ⌘K
                 </kbd>
               </button>
-
-              <Link
-                href="/tools"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-violet-600 hover:from-cyan-400 hover:to-violet-500 shadow-glow-multi transition-all duration-200 active:scale-95"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Explore Tools</span>
-              </Link>
             </div>
 
-            {/* Mobile Menu & Search Buttons */}
+            {/* Mobile Actions */}
             <div className="flex md:hidden items-center gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded-xl border border-white/[0.08] bg-[#0c101c] text-slate-300 hover:text-white"
+                className="p-2 rounded-md border border-[#E7E7E3] bg-[#FFFFFF] text-[#737373] hover:text-[#202124]"
                 aria-label="Search"
               >
-                <Search className="w-5 h-5 text-cyan-400" />
+                <Search className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-xl border border-white/[0.08] bg-[#0c101c] text-slate-300 hover:text-white"
+                className="p-2 rounded-md border border-[#E7E7E3] bg-[#FFFFFF] text-[#737373] hover:text-[#202124]"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               >
-                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-b border-white/[0.08] bg-[#06080e]/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+          <div className="md:hidden border-b border-[#E7E7E3] bg-[#FFFFFF] px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium ${
+                className={`block px-3 py-2 rounded-md text-sm ${
                   isActive(link.href)
-                    ? "bg-violet-600/20 text-violet-300 border border-violet-500/30"
-                    : "text-slate-300 hover:bg-white/[0.04]"
+                    ? "text-[#176B50] font-medium bg-[#EBF5F1]"
+                    : "text-[#737373] hover:text-[#202124] hover:bg-[#FAFAF8]"
                 }`}
               >
-                <span>{link.name}</span>
-                <ChevronRight className="w-4 h-4 text-slate-500" />
+                {link.name}
               </Link>
             ))}
-
-            <div className="pt-3 border-t border-white/[0.08] flex flex-col gap-2">
-              <Link
-                href="/tools"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-violet-600"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Explore All Tools</span>
-              </Link>
-            </div>
           </div>
         )}
       </header>

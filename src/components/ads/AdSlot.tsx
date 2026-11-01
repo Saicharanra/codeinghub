@@ -16,13 +16,6 @@ declare global {
   }
 }
 
-/**
- * Reusable AdSlot component for compliant Google AdSense integration.
- * Complies with Google AdSense Policies:
- * - Collapses (renders null) if publisher ID or slot ID is missing (no empty blank boxes).
- * - Distinguishable with a subtle "ADVERTISEMENT" header.
- * - Proper spacing preventing accidental clicks and avoiding overlap with inputs or navigation.
- */
 export default function AdSlot({
   slotId,
   format = "auto",
@@ -32,28 +25,34 @@ export default function AdSlot({
 }: AdSlotProps) {
   const publisherId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
   const effectiveSlotId = slotId || process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT;
-
-  // Strict check: if publisher ID or slot ID is absent, completely collapse container
-  if (!publisherId || !effectiveSlotId || publisherId === "ca-pub-0000000000000000") {
-    return null;
-  }
+  const isEnabled = Boolean(
+    publisherId &&
+    effectiveSlotId &&
+    publisherId !== "ca-pub-0000000000000000"
+  );
 
   useEffect(() => {
+    if (!isEnabled) return;
     try {
       if (typeof window !== "undefined") {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
     } catch (err) {
-      // Gracefully ignore AdSense push errors (e.g. blocked by adblockers)
+      // Gracefully ignore
     }
-  }, []);
+  }, [isEnabled]);
+
+  // Strict check: collapse completely when publisher or slot ID is absent
+  if (!isEnabled) {
+    return null;
+  }
 
   return (
     <div
-      className={`my-8 flex flex-col items-center justify-center p-3 rounded-xl border border-slate-800/80 bg-slate-900/40 text-center ${className}`}
+      className={`my-8 flex flex-col items-center justify-center p-3 rounded border border-[#E7E7E3] bg-[#FAFAF8] text-center ${className}`}
       aria-label="Sponsored advertisement"
     >
-      <div className="text-[10px] uppercase tracking-wider text-slate-500 font-medium mb-2">
+      <div className="text-[10px] uppercase tracking-wider text-[#737373] font-medium mb-2">
         {label}
       </div>
       <div className="w-full overflow-hidden flex justify-center min-h-[90px]">

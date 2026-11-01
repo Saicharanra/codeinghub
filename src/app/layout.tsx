@@ -6,7 +6,8 @@ import AdSenseScript from "@/components/ads/AdSenseScript";
 import { siteConfig } from "@/lib/seo";
 
 export const viewport: Viewport = {
-  themeColor: "#080b12",
+  themeColor: "#FAFAF8",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -14,7 +15,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Coding Hub - Everything You Need to Learn, Build & Calculate",
+    default: "Coding Hub — Useful tools for the work you do every day",
     template: "%s | Coding Hub",
   },
   description: siteConfig.description,
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "Coding Hub - Everything You Need to Learn, Build & Calculate",
+    title: "Coding Hub — Useful tools for the work you do every day",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -39,13 +40,13 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Coding Hub - Free Developer Tools and Student Calculators",
+        alt: "Coding Hub — Minimal developer utilities and student calculators",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Coding Hub - Free Tools & Tutorials for Coders & Students",
+    title: "Coding Hub — Useful tools for the work you do every day",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: "@codinghub",
@@ -85,7 +86,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
         <AdSenseScript />
         <script
@@ -93,9 +94,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJsonLd) }}
         />
       </head>
-      <body className="bg-background text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500/30">
+      <body className="bg-[#FAFAF8] text-[#202124] min-h-screen flex flex-col antialiased">
         <Navbar />
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="flex-1 bg-[#FAFAF8] max-w-[1180px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {children}
         </main>
         <Footer />

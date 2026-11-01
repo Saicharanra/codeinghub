@@ -1,59 +1,40 @@
 import React from "react";
 import Link from "next/link";
-import { GraduationCap, Terminal, BookOpen, ArrowRight, Layers, Sparkles } from "lucide-react";
+import { GraduationCap, Terminal, BookOpen, ArrowRight } from "lucide-react";
 
 export default function CategoriesGrid() {
   const categories = [
     {
-      title: "Student Calculators",
-      count: "3 Free Tools",
-      description: "Semester GPA, credit-weighted CGPA, exam percentage conversions, and attendance shortage forecasting.",
-      icon: <GraduationCap className="w-7 h-7 text-cyan-400" />,
-      gradientBorder: "hover:border-cyan-500/50",
-      accentBg: "from-cyan-500/15 via-indigo-600/10 to-transparent",
+      title: "Student Tools",
+      description: "GPA, CGPA, attendance, and exam percentage utilities tailored for college and university grading scales.",
+      icon: <GraduationCap className="w-5 h-5 text-[#176B50]" />,
       link: "/tools?category=student",
-      glow: "hover:shadow-[0_0_35px_rgba(34,211,238,0.25)]",
-      badgeText: "ACADEMICS",
-      items: ["CGPA Calculator", "Percentage Calculator", "Attendance Calculator"],
+      count: "3 Tools",
     },
     {
-      title: "Developer Utilities",
-      count: "3 Browser Tools",
-      description: "100% in-browser developer utilities. Validate API payloads, convert naming conventions, and inspect text density.",
-      icon: <Terminal className="w-7 h-7 text-violet-400" />,
-      gradientBorder: "hover:border-violet-500/50",
-      accentBg: "from-violet-500/15 via-fuchsia-600/10 to-transparent",
+      title: "Developer Tools",
+      description: "Browser utilities for quick formatting, syntax validation, word density checks, and text case conversions.",
+      icon: <Terminal className="w-5 h-5 text-[#176B50]" />,
       link: "/tools?category=developer",
-      glow: "hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
-      badgeText: "DEV TOOLBOX",
-      items: ["JSON Formatter & Validator", "Word & Character Counter", "Text Case Converter"],
+      count: "3 Tools",
     },
     {
-      title: "Technical Tutorials",
-      count: "6 In-Depth Guides",
-      description: "Practical engineering roadmaps on Python automation, SQL query execution plans, Power BI star schemas, and modern React.",
-      icon: <BookOpen className="w-7 h-7 text-pink-400" />,
-      gradientBorder: "hover:border-pink-500/50",
-      accentBg: "from-pink-500/15 via-purple-600/10 to-transparent",
+      title: "Technical Guides",
+      description: "Step-by-step engineering articles on Python, SQL queries, Power BI DAX, and modern web application development.",
+      icon: <BookOpen className="w-5 h-5 text-[#176B50]" />,
       link: "/tutorials",
-      glow: "hover:shadow-[0_0_35px_rgba(236,72,153,0.25)]",
-      badgeText: "LEARNING",
-      items: ["Python Programming", "SQL & Databases", "Power BI & DAX", "Modern Web Dev"],
+      count: "6 Guides",
     },
   ];
 
   return (
-    <section className="my-20">
-      <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-        <div className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-violet-400 mb-1">
-          <Layers className="w-3.5 h-3.5" />
-          <span>Category Breakdown</span>
-        </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Explore by Category
+    <section className="py-14 sm:py-16 border-b border-[#E7E7E3]">
+      <div className="mb-8">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[#202124] tracking-tight">
+          Browse by Category
         </h2>
-        <p className="text-slate-400 text-sm">
-          Everything structured logically to help you study smarter, debug faster, and build better.
+        <p className="text-xs sm:text-sm text-[#737373] mt-1">
+          Everything organized logically for quick reference and daily use.
         </p>
       </div>
 
@@ -61,50 +42,31 @@ export default function CategoriesGrid() {
         {categories.map((cat, idx) => (
           <div
             key={idx}
-            className={`group relative p-7 rounded-3xl bg-gradient-to-b ${cat.accentBg} bg-[#0c101c] border border-white/[0.08] ${cat.gradientBorder} flex flex-col justify-between space-y-6 shadow-xl transition-all duration-300 hover:-translate-y-1 ${cat.glow} backdrop-blur-sm`}
+            className="p-6 rounded-lg border border-[#E7E7E3] bg-[#FFFFFF] flex flex-col justify-between space-y-4 shadow-subtle"
           >
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
+                <div className="w-9 h-9 rounded bg-[#EBF5F1] flex items-center justify-center">
                   {cat.icon}
                 </div>
-                <span className="text-[10px] font-mono font-semibold px-2.5 py-1 rounded-full bg-white/[0.06] text-slate-300 border border-white/[0.08]">
-                  {cat.badgeText}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                <span className="text-[11px] font-mono text-[#737373] font-medium">
                   {cat.count}
                 </span>
-                <h3 className="text-xl font-bold text-white mt-1 group-hover:text-slate-100 transition-colors">
-                  {cat.title}
-                </h3>
-                <p className="text-sm text-slate-400 mt-2 leading-relaxed">
-                  {cat.description}
-                </p>
               </div>
-
-              <div className="pt-2">
-                <div className="flex flex-wrap gap-1.5">
-                  {cat.items.map((item, i) => (
-                    <span
-                      key={i}
-                      className="text-xs font-mono px-2.5 py-1 rounded-lg bg-black/40 text-slate-300 border border-white/[0.06]"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <h3 className="text-base font-semibold text-[#202124]">
+                {cat.title}
+              </h3>
+              <p className="text-xs text-[#737373] leading-relaxed">
+                {cat.description}
+              </p>
             </div>
 
             <Link
               href={cat.link}
-              className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-semibold text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] transition-all group-hover:border-white/[0.2]"
+              className="text-xs font-medium text-[#176B50] hover:text-[#12543E] transition-colors inline-flex items-center gap-1 pt-2"
             >
-              <span>Explore Category</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <span>Explore category</span>
+              <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
         ))}

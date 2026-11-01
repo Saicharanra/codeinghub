@@ -3,65 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --background: #06080e;
-  --foreground: #f1f5f9;
+  --background: #FAFAF8;
+  --foreground: #202124;
+  --secondary-text: #737373;
+  --primary: #176B50;
+  --card-background: #FFFFFF;
+  --border: #E7E7E3;
+  --muted-background: #F3F3F0;
+  color-scheme: light;
+}
+
+html {
+  color-scheme: light !important;
+  background-color: #FAFAF8 !important;
+  color: #202124 !important;
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-attachment: fixed;
+  color-scheme: light !important;
+  background-color: #FAFAF8 !important;
+  color: #202124 !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-/* Custom modern scrollbars */
+main {
+  background-color: #FAFAF8;
+  color: #202124;
+}
+
+/* Minimal subtle scrollbars */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #06080e;
+  background: #FAFAF8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1c253d;
+  background: #D3D3CD;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e3c5e;
+  background: #A3A3A3;
 }
 
-/* Code block typography */
+/* Restrained code blocks */
 pre code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Selection highlight */
+/* Subtle selection color matching deep green accent */
 ::selection {
-  background-color: rgba(139, 92, 246, 0.35);
-  color: #ffffff;
-}
-
-/* Glowing gradient border helpers */
-.gradient-border-glow {
-  position: relative;
-}
-
-.gradient-border-glow::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.2));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background-color: #EBF5F1;
+  color: #176B50;
 }

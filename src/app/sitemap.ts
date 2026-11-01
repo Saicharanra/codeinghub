@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { toolsData } from "@/data/toolsData";
 import { tutorialsData } from "@/data/tutorialsData";
+import { categoriesData } from "@/data/categoriesData";
 import { siteConfig } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -61,13 +62,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  // Tutorial routes
-  const tutorialRoutes: MetadataRoute.Sitemap = tutorialsData.map((tut) => ({
-    url: `${baseUrl}/tutorials/${tut.slug}`,
+  // Category hub routes
+  const categoryRoutes: MetadataRoute.Sitemap = categoriesData.map((cat) => ({
+    url: `${baseUrl}/tutorials/${cat.slug}`,
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...toolRoutes, ...tutorialRoutes];
+  // Tutorial article routes
+  const tutorialRoutes: MetadataRoute.Sitemap = tutorialsData.map((tut) => ({
+    url: `${baseUrl}/tutorials/${tut.categorySlug}/${tut.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...categoryRoutes, ...tutorialRoutes];
 }

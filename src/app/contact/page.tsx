@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import PageHeader from "@/components/common/PageHeader";
 import AdSlot from "@/components/ads/AdSlot";
-import { Mail, MessageSquare, CheckCircle2, AlertCircle, Clock, Send, Sparkles } from "lucide-react";
+import { Mail, CheckCircle2, AlertCircle, Clock, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -37,7 +37,6 @@ export default function ContactPage() {
     }
 
     setStatus("loading");
-    // Simulate swift client processing
     setTimeout(() => {
       setStatus("success");
       setFormData({
@@ -46,39 +45,39 @@ export default function ContactPage() {
         subject: "Tool Suggestion",
         message: "",
       });
-    }, 700);
+    }, 600);
   };
 
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-6 sm:py-8 space-y-8">
       <Breadcrumbs items={[{ label: "Contact Us" }]} />
 
       <PageHeader
-        badge="Direct Support"
+        badge="Direct Contact"
         badgeColor="indigo"
         title="Contact Coding Hub"
-        description="Have a question, tool request, or bug report? Reach out directly to our engineering and editorial team."
+        description="Have a question, tool suggestion, or discrepancy report? Reach out directly to our engineering team."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Contact Information & Response Guidelines */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="p-6 sm:p-8 rounded-3xl bg-surface-card border border-slate-800 space-y-6 shadow-xl">
-            <h2 className="text-xl font-bold text-white">Get in Touch</h2>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              We welcome feedback, tool feature suggestions, corrections on our tutorials, and partnership inquiries.
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Contact Information & Guidelines */}
+        <div className="lg:col-span-5 space-y-4">
+          <div className="p-5 sm:p-6 rounded-lg bg-white border border-[#E7E7E3] space-y-4">
+            <h2 className="text-base font-bold text-[#202124]">Direct Channels</h2>
+            <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+              We welcome tool requests, calculation formula corrections, tutorial feedback, and general queries.
             </p>
 
-            <div className="space-y-4 pt-2">
+            <div className="space-y-3 pt-1">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-indigo-400 flex-shrink-0">
-                  <Mail className="w-5 h-5" />
+                <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center text-[#176B50] flex-shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xs text-slate-400 block">Official Support Email</span>
+                  <span className="text-[11px] font-mono text-[#737373] block">Support Email</span>
                   <a
                     href="mailto:contact@codinghub.dev"
-                    className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors"
+                    className="text-xs sm:text-sm font-mono font-medium text-[#202124] hover:text-[#176B50] transition-colors"
                   >
                     contact@codinghub.dev
                   </a>
@@ -86,22 +85,22 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                  <Clock className="w-5 h-5" />
+                <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center text-[#176B50] flex-shrink-0">
+                  <Clock className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xs text-slate-400 block">Expected Response Time</span>
-                  <span className="text-sm font-semibold text-slate-200">
-                    Within 24 to 48 business hours
+                  <span className="text-[11px] font-mono text-[#737373] block">Expected Response</span>
+                  <span className="text-xs sm:text-sm font-medium text-[#202124]">
+                    Within 24 to 48 hours
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 space-y-1">
-              <span className="font-semibold text-slate-300 block">Note regarding calculations:</span>
+            <div className="p-3 rounded bg-[#FAFAF8] border border-[#E7E7E3] text-xs text-[#737373] space-y-1">
+              <span className="font-semibold text-[#202124] block">Regarding university grading formulas:</span>
               <p>
-                If you believe an academic calculator produced an unexpected result for your specific university, please include your institution&apos;s formula or grading guidelines in your message.
+                If your institution uses a custom grading scale or unique credit rounding, send us a link to your official handbook and we will evaluate support.
               </p>
             </div>
           </div>
@@ -109,34 +108,33 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div className="lg:col-span-7">
-          <div className="p-6 sm:p-8 rounded-3xl bg-surface-card border border-slate-800 shadow-xl space-y-6">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-indigo-400" />
-              <span>Send Us a Message</span>
+          <div className="p-5 sm:p-6 rounded-lg bg-white border border-[#E7E7E3] space-y-4">
+            <h2 className="text-base font-bold text-[#202124]">
+              Send Us a Message
             </h2>
 
             {status === "success" ? (
-              <div className="p-6 rounded-2xl bg-emerald-950/60 border border-emerald-600/50 text-emerald-200 space-y-3 animate-in fade-in">
-                <div className="flex items-center gap-2.5 font-bold text-emerald-300 text-base">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-                  <span>Message Sent Successfully!</span>
+              <div className="p-5 rounded-lg bg-[#EBF5F1] border border-[#C8E3D8] text-[#176B50] space-y-2">
+                <div className="flex items-center gap-2 font-bold text-sm">
+                  <CheckCircle2 className="w-5 h-5 text-[#176B50]" />
+                  <span>Message Sent Successfully</span>
                 </div>
-                <p className="text-xs sm:text-sm text-emerald-300/90 leading-relaxed">
-                  Thank you for reaching out. We have received your submission and our team will get back to you at your provided email address shortly.
+                <p className="text-xs text-[#176B50] leading-relaxed">
+                  Thank you for reaching out. We have received your note and will reply directly to your email shortly.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-800 hover:bg-emerald-700 text-white mt-2"
+                  className="px-3 py-1.5 rounded text-xs font-mono font-medium bg-[#176B50] text-white mt-1"
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-medium text-slate-300 block mb-1.5">
-                      Your Full Name *
+                    <label className="text-xs font-mono text-[#737373] block mb-1">
+                      Your Name *
                     </label>
                     <input
                       type="text"
@@ -144,13 +142,13 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="e.g. Alex Johnson"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-750 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2 rounded bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] placeholder-[#737373] text-sm focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50]"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-medium text-slate-300 block mb-1.5">
+                    <label className="text-xs font-mono text-[#737373] block mb-1">
                       Email Address *
                     </label>
                     <input
@@ -159,46 +157,46 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="e.g. alex@example.com"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-750 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2 rounded bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] placeholder-[#737373] text-sm focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50]"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-slate-300 block mb-1.5">
-                    Topic / Category
+                  <label className="text-xs font-mono text-[#737373] block mb-1">
+                    Category
                   </label>
                   <select
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-750 text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 rounded bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] text-sm focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50]"
                   >
-                    <option value="Tool Suggestion">Suggest a New Tool / Feature</option>
-                    <option value="Bug Report">Report a Calculator or Tool Bug</option>
-                    <option value="Tutorial Feedback">Tutorial Content Feedback</option>
-                    <option value="General Inquiry">General Question or Inquiries</option>
+                    <option value="Tool Suggestion">Suggest a New Tool / Calculator</option>
+                    <option value="Bug Report">Report a Calculation Bug</option>
+                    <option value="Tutorial Feedback">Tutorial Feedback / Correction</option>
+                    <option value="General Inquiry">General Question</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-slate-300 block mb-1.5">
+                  <label className="text-xs font-mono text-[#737373] block mb-1">
                     Your Message *
                   </label>
                   <textarea
                     name="message"
-                    rows={6}
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Describe your suggestion, formula discrepancy, or inquiry in detail..."
-                    className="w-full p-4 rounded-xl bg-slate-900 border border-slate-750 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y leading-relaxed"
+                    placeholder="Describe your suggestion, formula discrepancy, or inquiry..."
+                    className="w-full p-3 rounded bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] placeholder-[#737373] text-sm focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50] resize-y leading-relaxed"
                     required
                   />
                 </div>
 
                 {status === "error" && (
-                  <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-800/50 text-xs text-rose-300 flex items-center gap-2">
+                  <div className="p-2.5 rounded bg-[#FDF2F2] border border-[#F5C2C7] text-xs text-[#991B1B] flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
                     <span>{errorMessage}</span>
                   </div>
@@ -207,9 +205,9 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-glow transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded text-xs font-mono font-medium text-white bg-[#176B50] hover:bg-[#12543E] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-3.5 h-3.5" />
                   <span>{status === "loading" ? "Sending..." : "Submit Message"}</span>
                 </button>
               </form>

@@ -10,7 +10,6 @@ import {
   Zap,
   Code2,
   GraduationCap,
-  Heart,
   Terminal,
   ArrowRight,
 } from "lucide-react";
@@ -24,51 +23,48 @@ export const metadata: Metadata = constructMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="py-6 sm:py-10 space-y-12">
+    <div className="py-6 sm:py-8 space-y-10">
       <Breadcrumbs items={[{ label: "About Us" }]} />
 
       <PageHeader
-        badge="Our Mission"
+        badge="About Coding Hub"
         badgeColor="indigo"
         title="About Coding Hub"
         description="Built to eliminate cluttered, bloated calculation sites and provide students and developers with fast, honest, and completely free web utilities."
       />
 
       {/* Origin Story Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-7 space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-7 space-y-4 text-[#202124] text-sm sm:text-base leading-relaxed">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#202124]">
             Why We Built Coding Hub
           </h2>
-          <p>
-            Every university student and coder has had the same frustrating experience: you search for a simple attendance or GPA calculator, or you want to format a piece of JSON, only to land on an outdated website covered in popups, slow reload loops, and deceptive download buttons.
+          <p className="text-[#737373]">
+            Every university student and programmer has had the same frustrating experience: searching for an attendance or GPA calculator, or trying to format a chunk of JSON, only to land on an outdated website covered in intrusive ads, slow page reloads, and misleading buttons.
           </p>
-          <p>
-            Even worse, many existing web utilities silently upload your text and calculations to third-party tracking servers, storing your inputs without your informed consent.
+          <p className="text-[#737373]">
+            Even worse, many web utilities silently transmit your input data to third-party servers, storing your texts or credentials without clear consent.
           </p>
-          <p>
-            We created <strong>Coding Hub</strong> to set a new standard: an open, modern SaaS-grade web platform that performs calculations instantly in your browser, prioritizes user privacy, and pairs functional tools with high-quality educational guides.
+          <p className="text-[#737373]">
+            We created <strong className="text-[#202124]">Coding Hub</strong> to offer a better alternative: an open, modern web tool suite that performs calculations instantly in your browser, prioritizes user privacy, and pairs practical utilities with high-quality educational guides.
           </p>
         </div>
 
         <div className="lg:col-span-5">
-          <div className="p-6 rounded-3xl bg-surface-card border border-slate-800 space-y-4 shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-950/80 border border-indigo-700/40 flex items-center justify-center">
-              <Code2 className="w-6 h-6 text-indigo-400" />
-            </div>
-            <h3 className="text-lg font-bold text-white">Our Engineering Principles</h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-400">
-              <li className="flex items-start gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <span><strong>Privacy First:</strong> Calculators operate 100% client-side via JavaScript.</span>
+          <div className="p-6 rounded-lg bg-white border border-[#E7E7E3] space-y-4">
+            <h3 className="text-base font-semibold text-[#202124]">Our Guiding Principles</h3>
+            <ul className="space-y-3 text-xs sm:text-sm text-[#737373]">
+              <li className="flex items-start gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#176B50] flex-shrink-0 mt-0.5" />
+                <span><strong className="text-[#202124]">Privacy First:</strong> Calculators operate 100% client-side via JavaScript.</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Zap className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-                <span><strong>No Artificial Latency:</strong> Zero round-trips to backend servers for basic calculations.</span>
+              <li className="flex items-start gap-2.5">
+                <Zap className="w-4 h-4 text-[#176B50] flex-shrink-0 mt-0.5" />
+                <span><strong className="text-[#202124]">No Artificial Latency:</strong> Zero round-trips to backend servers for calculations.</span>
               </li>
-              <li className="flex items-start gap-2">
-                <GraduationCap className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" />
-                <span><strong>Verified Math:</strong> Transparent formulas that mirror accredited university systems.</span>
+              <li className="flex items-start gap-2.5">
+                <GraduationCap className="w-4 h-4 text-[#176B50] flex-shrink-0 mt-0.5" />
+                <span><strong className="text-[#202124]">Verified Math:</strong> Transparent formulas that mirror standard university grading models.</span>
               </li>
             </ul>
           </div>
@@ -78,57 +74,59 @@ export default function AboutPage() {
       <AdSlot slotId={process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT} label="Sponsored Placement" />
 
       {/* Target Audiences */}
-      <section className="space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center">
+      <section className="space-y-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#202124]">
           Who Is Coding Hub For?
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-surface-card border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-indigo-400">
-              <GraduationCap className="w-5 h-5" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-5 rounded-lg bg-white border border-[#E7E7E3] space-y-2">
+            <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center text-[#176B50] mb-2">
+              <GraduationCap className="w-4 h-4" />
             </div>
-            <h3 className="text-lg font-bold text-white">University & College Students</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Plan your semester GPA, calculate exam percentage thresholds, and monitor lecture attendance to prevent debarment with zero stress.
+            <h3 className="text-base font-semibold text-[#202124]">College Students</h3>
+            <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+              Calculate semester GPAs, evaluate exam percentage thresholds, and monitor class attendance requirements to stay ahead.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-surface-card border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-purple-400">
-              <Terminal className="w-5 h-5" />
+          <div className="p-5 rounded-lg bg-white border border-[#E7E7E3] space-y-2">
+            <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center text-[#176B50] mb-2">
+              <Terminal className="w-4 h-4" />
             </div>
-            <h3 className="text-lg font-bold text-white">Software Developers</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <h3 className="text-base font-semibold text-[#202124]">Software Developers</h3>
+            <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
               Format API payloads, inspect JSON syntax errors, convert variable casing, and check character limits without leaving your browser tab.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-surface-card border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-pink-400">
-              <Code2 className="w-5 h-5" />
+          <div className="p-5 rounded-lg bg-white border border-[#E7E7E3] space-y-2">
+            <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center text-[#176B50] mb-2">
+              <Code2 className="w-4 h-4" />
             </div>
-            <h3 className="text-lg font-bold text-white">Self-Taught Learners</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Access genuine, practically verified tutorials on Python, SQL query optimization, Power BI dashboards, and modern React architectures.
+            <h3 className="text-base font-semibold text-[#202124]">Data Learners</h3>
+            <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+              Read practical, verified tutorials on Python, SQL query optimization, Power BI dashboards, and modern web architectures.
             </p>
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <div className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 text-center space-y-4">
-        <h3 className="text-xl font-bold text-white">Have a suggestion or feedback?</h3>
-        <p className="text-sm text-slate-400 max-w-lg mx-auto">
+      <div className="p-6 sm:p-8 rounded-lg bg-white border border-[#E7E7E3] text-center space-y-3">
+        <h3 className="text-lg sm:text-xl font-bold text-[#202124]">Have a suggestion or feedback?</h3>
+        <p className="text-xs sm:text-sm text-[#737373] max-w-lg mx-auto">
           Coding Hub is continuously maintained. If there is an academic calculator or developer tool you would like us to build, let us know!
         </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all"
-        >
-          <span>Get in Touch With Us</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+        <div className="pt-1">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium text-white bg-[#176B50] hover:bg-[#12543E] transition-colors"
+          >
+            <span>Get in touch with us</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </div>
     </div>
   );

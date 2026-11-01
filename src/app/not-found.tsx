@@ -1,47 +1,47 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, Home, Calculator, BookOpen, AlertCircle } from "lucide-react";
+import { Home, Calculator, BookOpen, AlertCircle } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-16">
-      <div className="w-16 h-16 rounded-2xl bg-indigo-950/60 border border-indigo-700/40 flex items-center justify-center text-indigo-400 mb-6 shadow-glow">
-        <AlertCircle className="w-8 h-8" />
+    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-16">
+      <div className="w-12 h-12 rounded-lg bg-[#EBF5F1] text-[#176B50] flex items-center justify-center mb-4">
+        <AlertCircle className="w-6 h-6" />
       </div>
 
-      <span className="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-2">
-        Error 404
+      <span className="text-xs font-mono uppercase tracking-widest text-[#176B50] mb-2 font-semibold">
+        Error 404 • Page Not Found
       </span>
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+      <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight mb-2">
         Page Not Found
       </h1>
 
-      <p className="max-w-md text-sm sm:text-base text-slate-400 mb-8 leading-relaxed">
+      <p className="max-w-md text-sm text-[#737373] mb-6 leading-relaxed">
         The tool or tutorial page you are looking for may have been moved, renamed, or does not exist.
       </p>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-glow"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium text-white bg-[#176B50] hover:bg-[#12543E] transition-colors"
         >
-          <Home className="w-4 h-4" />
-          <span>Back to Home</span>
+          <Home className="w-3.5 h-3.5" />
+          <span>Home</span>
         </Link>
         <Link
           href="/tools"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition-all"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium text-[#202124] hover:text-[#176B50] bg-[#FFFFFF] border border-[#E7E7E3] hover:border-[#D3D3CD] transition-colors"
         >
-          <Calculator className="w-4 h-4 text-indigo-400" />
-          <span>Browse Tools</span>
+          <Calculator className="w-3.5 h-3.5 text-[#176B50]" />
+          <span>Tools Directory</span>
         </Link>
         <Link
           href="/tutorials"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition-all"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium text-[#202124] hover:text-[#176B50] bg-[#FFFFFF] border border-[#E7E7E3] hover:border-[#D3D3CD] transition-colors"
         >
-          <BookOpen className="w-4 h-4 text-purple-400" />
-          <span>Browse Tutorials</span>
+          <BookOpen className="w-3.5 h-3.5 text-[#176B50]" />
+          <span>Tutorials</span>
         </Link>
       </div>
     </div>
