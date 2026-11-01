@@ -9,8 +9,6 @@ import {
   Download,
   AlertCircle,
   Sparkles,
-  Maximize2,
-  Minimize2,
 } from "lucide-react";
 
 export default function JsonFormatter() {
@@ -57,7 +55,6 @@ export default function JsonFormatter() {
       setIsValid(false);
       let errorMsg = err.message || "Invalid JSON syntax";
 
-      // Extract line/column from error message if present (e.g., at position 45 or line 2 column 5)
       let line: number | undefined;
       let col: number | undefined;
 
@@ -121,37 +118,37 @@ export default function JsonFormatter() {
   return (
     <div className="space-y-6">
       {/* Action and Configuration Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-surface-card border border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-[#0c101c]/90 border border-white/[0.08] backdrop-blur-md">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">
+          <span className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mr-1">
             Indentation:
           </span>
           <button
             onClick={() => handleIndentChange(2)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all ${
               indentation === 2
-                ? "bg-indigo-600 text-white shadow-sm"
-                : "bg-slate-800 text-slate-400 hover:text-white"
+                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(139,92,246,0.35)]"
+                : "bg-white/[0.04] text-slate-400 hover:text-white border border-white/[0.08]"
             }`}
           >
             2 Spaces
           </button>
           <button
             onClick={() => handleIndentChange(4)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all ${
               indentation === 4
-                ? "bg-indigo-600 text-white shadow-sm"
-                : "bg-slate-800 text-slate-400 hover:text-white"
+                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(139,92,246,0.35)]"
+                : "bg-white/[0.04] text-slate-400 hover:text-white border border-white/[0.08]"
             }`}
           >
             4 Spaces
           </button>
           <button
             onClick={() => handleIndentChange("compact")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all ${
               indentation === "compact"
-                ? "bg-indigo-600 text-white shadow-sm"
-                : "bg-slate-800 text-slate-400 hover:text-white"
+                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(139,92,246,0.35)]"
+                : "bg-white/[0.04] text-slate-400 hover:text-white border border-white/[0.08]"
             }`}
           >
             Minify (Compact)
@@ -161,13 +158,13 @@ export default function JsonFormatter() {
         <div className="flex items-center gap-2">
           <button
             onClick={loadSample}
-            className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-all"
+            className="px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-mono border border-white/[0.08] transition-all"
           >
             Load Sample
           </button>
           <button
             onClick={handleClear}
-            className="px-3 py-1.5 rounded-lg bg-slate-850 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-800 text-xs font-medium flex items-center gap-1.5 transition-all"
+            className="px-3 py-1.5 rounded-xl bg-white/[0.03] hover:bg-rose-950/50 text-slate-400 hover:text-rose-400 border border-white/[0.08] text-xs font-mono flex items-center gap-1.5 transition-all"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Clear</span>
@@ -177,13 +174,13 @@ export default function JsonFormatter() {
 
       {/* Error Notice */}
       {error && (
-        <div className="p-4 rounded-xl bg-rose-950/60 border border-rose-600/50 text-rose-200 flex items-start gap-3 animate-in fade-in">
+        <div className="p-4 rounded-2xl bg-rose-950/60 border border-rose-500/50 text-rose-200 flex items-start gap-3 animate-in fade-in shadow-[0_0_20px_rgba(244,63,94,0.2)]">
           <AlertCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
-          <div className="space-y-1 text-xs">
-            <div className="font-semibold text-rose-300">
-              JSON Validation Error {error.line && `at Line ${error.line}, Column ${error.column}`}
+          <div className="space-y-1 text-xs font-mono">
+            <div className="font-bold text-rose-300">
+              Syntax Error {error.line && `at Line ${error.line}, Column ${error.column}`}
             </div>
-            <p className="font-mono text-rose-200/90">{error.message}</p>
+            <p className="text-rose-200/90">{error.message}</p>
           </div>
         </div>
       )}
@@ -192,13 +189,13 @@ export default function JsonFormatter() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Input Panel */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+          <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
             <span className="font-semibold uppercase tracking-wider text-slate-300">
               Input Raw JSON
             </span>
             <span>{inputJson.length} characters</span>
           </div>
-          <div className="relative rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden focus-within:border-indigo-500/80 transition-all">
+          <div className="relative rounded-2xl border border-white/[0.1] bg-[#080b14] overflow-hidden focus-within:border-cyan-400/80 transition-all shadow-inner">
             <textarea
               value={inputJson}
               onChange={(e) => handleInputChange(e.target.value)}
@@ -212,14 +209,15 @@ export default function JsonFormatter() {
 
         {/* Output Panel */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+          <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
             <div className="flex items-center gap-2">
               <span className="font-semibold uppercase tracking-wider text-slate-300">
                 Formatted Output
               </span>
               {isValid && inputJson.trim() && (
-                <span className="px-2 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-600/40 text-emerald-300 text-[10px] font-semibold">
-                  Valid JSON
+                <span className="px-2 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[10px] font-semibold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Valid RFC 8259</span>
                 </span>
               )}
             </div>
@@ -227,7 +225,7 @@ export default function JsonFormatter() {
               <button
                 onClick={handleDownload}
                 disabled={!outputJson || !isValid}
-                className="hover:text-indigo-400 transition-colors disabled:opacity-40"
+                className="hover:text-cyan-400 transition-colors disabled:opacity-30 p-1"
                 title="Download JSON file"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -235,35 +233,35 @@ export default function JsonFormatter() {
               <button
                 onClick={handleCopy}
                 disabled={!outputJson || !isValid}
-                className="hover:text-indigo-400 transition-colors disabled:opacity-40"
+                className="hover:text-cyan-400 transition-colors disabled:opacity-30 p-1"
                 title="Copy to clipboard"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
-          <div className="relative rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+          <div className="relative rounded-2xl border border-white/[0.1] bg-[#0c101c]/90 overflow-hidden shadow-inner">
             <textarea
               value={outputJson}
               readOnly
               rows={18}
-              className="w-full p-4 bg-transparent text-indigo-200 font-mono text-xs sm:text-sm focus:outline-none resize-y leading-relaxed select-all"
+              className="w-full p-4 bg-transparent text-cyan-200 font-mono text-xs sm:text-sm focus:outline-none resize-y leading-relaxed select-all"
               placeholder="Formatted output will appear here..."
               spellCheck={false}
             />
             {outputJson && (
               <button
                 onClick={handleCopy}
-                className="absolute top-3 right-3 px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700/80 flex items-center gap-1.5 transition-all shadow-md backdrop-blur-sm"
+                className="absolute top-3 right-3 px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-xs font-mono font-medium text-white border border-white/[0.15] flex items-center gap-1.5 transition-all shadow-md backdrop-blur-md"
               >
                 {copied ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Copied!</span>
+                    <span className="text-emerald-400">Copied!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3.5 h-3.5 text-slate-400" />
+                    <Copy className="w-3.5 h-3.5 text-cyan-400" />
                     <span>Copy JSON</span>
                   </>
                 )}

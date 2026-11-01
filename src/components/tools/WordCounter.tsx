@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Type, Copy, Check, Trash2, Clock, Volume2, FileText, AlignLeft } from "lucide-react";
+import { Type, Copy, Check, Trash2, Clock, Volume2 } from "lucide-react";
 
 export default function WordCounter() {
   const [text, setText] = useState<string>(
-    "Coding Hub is an all-in-one developer and student platform designed for high performance, accessibility, and utility. Students calculate semester CGPA and attendance requirements, while developers format JSON, convert casing conventions, and count words with zero latency."
+    "Coding Hub provides fast, client-side tools for university students and developers. Calculate semester GPAs, simulate attendance, format API JSON, and convert variable casing without data leakage."
   );
   const [copied, setCopied] = useState(false);
 
@@ -13,33 +13,25 @@ export default function WordCounter() {
     const raw = text;
     const trimmed = text.trim();
 
-    // Characters
     const charsWithSpaces = raw.length;
     const charsWithoutSpaces = raw.replace(/\s+/g, "").length;
 
-    // Words
     const wordsArray = trimmed ? trimmed.split(/\s+/).filter(Boolean) : [];
     const wordsCount = wordsArray.length;
 
-    // Sentences (split by punctuation followed by space or end)
     const sentencesArray = trimmed
       ? trimmed.split(/[.!?]+(?:\s+|$)/).filter(Boolean)
       : [];
     const sentencesCount = sentencesArray.length;
 
-    // Paragraphs (split by two or more newlines or single newline with non-empty)
     const paragraphsArray = trimmed
       ? trimmed.split(/\n+/).filter((p) => p.trim().length > 0)
       : [];
     const paragraphsCount = paragraphsArray.length;
 
-    // Reading time: standard average 200 words per minute
     const readingTimeMinutes = Math.ceil(wordsCount / 200);
-
-    // Speaking time: standard average 130 words per minute
     const speakingTimeMinutes = Math.ceil(wordsCount / 130);
 
-    // Average word length
     const avgWordLength =
       wordsCount > 0 ? (charsWithoutSpaces / wordsCount).toFixed(1) : "0";
 
@@ -68,43 +60,43 @@ export default function WordCounter() {
 
   return (
     <div className="space-y-6">
-      {/* Metric Cards Banner */}
+      {/* Metric Cards Banner with Cool Colors */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-surface-card border border-slate-800 text-center shadow-sm">
-          <span className="text-xs uppercase font-semibold text-slate-400 block mb-1">
+        <div className="p-5 rounded-2xl bg-[#0c101c]/90 border border-white/[0.08] hover:border-cyan-500/40 text-center shadow-card transition-all">
+          <span className="text-xs font-mono font-semibold uppercase text-slate-400 block mb-1">
             Words
           </span>
-          <span className="text-3xl font-black text-indigo-400">
+          <span className="text-3xl sm:text-4xl font-mono font-black text-cyan-400 drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
             {stats.wordsCount}
           </span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-surface-card border border-slate-800 text-center shadow-sm">
-          <span className="text-xs uppercase font-semibold text-slate-400 block mb-1">
+        <div className="p-5 rounded-2xl bg-[#0c101c]/90 border border-white/[0.08] hover:border-violet-500/40 text-center shadow-card transition-all">
+          <span className="text-xs font-mono font-semibold uppercase text-slate-400 block mb-1">
             Characters
           </span>
-          <span className="text-3xl font-black text-purple-400">
+          <span className="text-3xl sm:text-4xl font-mono font-black text-violet-400 drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]">
             {stats.charsWithSpaces}
           </span>
-          <span className="text-[10px] text-slate-500 block">
+          <span className="text-[10px] font-mono text-slate-500 block">
             ({stats.charsWithoutSpaces} w/o spaces)
           </span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-surface-card border border-slate-800 text-center shadow-sm">
-          <span className="text-xs uppercase font-semibold text-slate-400 block mb-1">
+        <div className="p-5 rounded-2xl bg-[#0c101c]/90 border border-white/[0.08] hover:border-sky-500/40 text-center shadow-card transition-all">
+          <span className="text-xs font-mono font-semibold uppercase text-slate-400 block mb-1">
             Sentences
           </span>
-          <span className="text-3xl font-black text-blue-400">
+          <span className="text-3xl sm:text-4xl font-mono font-black text-sky-400 drop-shadow-[0_0_20px_rgba(56,189,248,0.3)]">
             {stats.sentencesCount}
           </span>
         </div>
 
-        <div className="p-4 rounded-2xl bg-surface-card border border-slate-800 text-center shadow-sm">
-          <span className="text-xs uppercase font-semibold text-slate-400 block mb-1">
+        <div className="p-5 rounded-2xl bg-[#0c101c]/90 border border-white/[0.08] hover:border-fuchsia-500/40 text-center shadow-card transition-all">
+          <span className="text-xs font-mono font-semibold uppercase text-slate-400 block mb-1">
             Paragraphs
           </span>
-          <span className="text-3xl font-black text-pink-400">
+          <span className="text-3xl sm:text-4xl font-mono font-black text-fuchsia-400 drop-shadow-[0_0_20px_rgba(217,70,239,0.3)]">
             {stats.paragraphsCount}
           </span>
         </div>
@@ -112,15 +104,15 @@ export default function WordCounter() {
 
       {/* Editor Box */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+        <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-slate-300">
-              <Clock className="w-3.5 h-3.5 text-indigo-400" />
-              <span>~{stats.readingTimeMinutes} min reading time</span>
+              <Clock className="w-3.5 h-3.5 text-cyan-400" />
+              <span>~{stats.readingTimeMinutes} min reading</span>
             </span>
             <span className="hidden sm:flex items-center gap-1.5 text-slate-300">
-              <Volume2 className="w-3.5 h-3.5 text-purple-400" />
-              <span>~{stats.speakingTimeMinutes} min speaking time</span>
+              <Volume2 className="w-3.5 h-3.5 text-violet-400" />
+              <span>~{stats.speakingTimeMinutes} min speaking</span>
             </span>
           </div>
 
@@ -128,16 +120,16 @@ export default function WordCounter() {
             <button
               onClick={handleCopy}
               disabled={!text}
-              className="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium flex items-center gap-1.5 transition-all disabled:opacity-40"
+              className="px-3 py-1 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-all disabled:opacity-30 border border-white/[0.08]"
             >
               {copied ? (
                 <>
-                  <Check className="w-3 h-3 text-emerald-400" />
-                  <span>Copied</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400">Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3 h-3" />
+                  <Copy className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Copy</span>
                 </>
               )}
@@ -145,15 +137,15 @@ export default function WordCounter() {
             <button
               onClick={handleClear}
               disabled={!text}
-              className="px-2.5 py-1 rounded-lg bg-slate-850 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-800 text-xs font-medium flex items-center gap-1.5 transition-all disabled:opacity-40"
+              className="px-3 py-1 rounded-xl bg-white/[0.04] hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 text-xs font-mono flex items-center gap-1.5 transition-all disabled:opacity-30 border border-white/[0.08]"
             >
-              <Trash2 className="w-3 h-3" />
+              <Trash2 className="w-3.5 h-3.5" />
               <span>Clear</span>
             </button>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden focus-within:border-indigo-500/80 transition-all shadow-inner">
+        <div className="rounded-2xl border border-white/[0.1] bg-[#080b14] overflow-hidden focus-within:border-cyan-400/80 transition-all shadow-inner">
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -166,21 +158,21 @@ export default function WordCounter() {
 
       {/* Secondary Insights */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-        <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
-          <span className="text-xs text-slate-400">Avg Word Length</span>
-          <span className="text-sm font-semibold text-slate-200">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between font-mono text-xs">
+          <span className="text-slate-400">Avg Word Length</span>
+          <span className="font-bold text-slate-200">
             {stats.avgWordLength} characters
           </span>
         </div>
-        <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
-          <span className="text-xs text-slate-400">Total Whitespaces</span>
-          <span className="text-sm font-semibold text-slate-200">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between font-mono text-xs">
+          <span className="text-slate-400">Whitespaces</span>
+          <span className="font-bold text-slate-200">
             {stats.charsWithSpaces - stats.charsWithoutSpaces}
           </span>
         </div>
-        <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
-          <span className="text-xs text-slate-400">Reading Level</span>
-          <span className="text-sm font-semibold text-emerald-400">General Public</span>
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between font-mono text-xs">
+          <span className="text-slate-400">Reading Level</span>
+          <span className="font-bold text-emerald-400">Standard English</span>
         </div>
       </div>
     </div>
