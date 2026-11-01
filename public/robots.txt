@@ -1,0 +1,5 @@
+# Coding Hub Robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://codinghub.dev/sitemap.xml
