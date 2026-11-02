@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import AdSenseScript from "@/components/ads/AdSenseScript";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import CookieConsent from "@/components/common/CookieConsent";
 import { siteConfig } from "@/lib/seo";
 
 export const viewport: Viewport = {
@@ -23,6 +25,11 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author }],
   creator: siteConfig.author,
   publisher: siteConfig.name,
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
   formatDetection: {
     email: false,
     address: false,
@@ -89,6 +96,7 @@ export default function RootLayout({
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
         <AdSenseScript />
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJsonLd) }}
@@ -100,6 +108,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

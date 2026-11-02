@@ -12,6 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { processJson } from "@/lib/calculators/json";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function JsonFormatter() {
   const sampleJson = `{
@@ -73,7 +74,10 @@ export default function JsonFormatter() {
             Indentation:
           </span>
           <button
-            onClick={() => setIndentMode(2)}
+            onClick={() => {
+              setIndentMode(2);
+              trackCalculationCompleted("json-formatter", "indent_2_spaces");
+            }}
             className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
               indentMode === 2
                 ? "bg-[#176B50] text-white font-medium"
@@ -83,7 +87,10 @@ export default function JsonFormatter() {
             2 Spaces
           </button>
           <button
-            onClick={() => setIndentMode(4)}
+            onClick={() => {
+              setIndentMode(4);
+              trackCalculationCompleted("json-formatter", "indent_4_spaces");
+            }}
             className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
               indentMode === 4
                 ? "bg-[#176B50] text-white font-medium"
@@ -93,7 +100,10 @@ export default function JsonFormatter() {
             4 Spaces
           </button>
           <button
-            onClick={() => setIndentMode("compact")}
+            onClick={() => {
+              setIndentMode("compact");
+              trackCalculationCompleted("json-formatter", "minify_compact");
+            }}
             className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
               indentMode === "compact"
                 ? "bg-[#176B50] text-white font-medium"

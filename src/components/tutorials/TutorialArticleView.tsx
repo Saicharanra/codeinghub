@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Clock,
@@ -22,6 +22,7 @@ import AdSlot from "@/components/ads/AdSlot";
 import { TutorialItem, tutorialsData } from "@/data/tutorialsData";
 import { toolsData } from "@/data/toolsData";
 import { categoriesData } from "@/data/categoriesData";
+import { trackTutorialOpened, trackRelatedToolClicked } from "@/lib/analytics";
 
 interface TutorialArticleViewProps {
   tutorial: TutorialItem;
@@ -30,6 +31,10 @@ interface TutorialArticleViewProps {
 export default function TutorialArticleView({ tutorial }: TutorialArticleViewProps) {
   const [copiedCodeIndex, setCopiedCodeIndex] = useState<number | null>(null);
   const [copiedUrl, setCopiedUrl] = useState(false);
+
+  useEffect(() => {
+    trackTutorialOpened(tutorial.categorySlug, tutorial.slug);
+  }, [tutorial.categorySlug, tutorial.slug]);
 
   const handleCopyCode = (code: string, index: number) => {
     navigator.clipboard.writeText(code);
@@ -401,6 +406,7 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
                     <Link
                       key={tool.id}
                       href={tool.path}
+                      onClick={() => trackRelatedToolClicked("tutorial_article", tool.id)}
                       className="p-3.5 rounded-lg bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-colors flex items-center justify-between group"
                     >
                       <div>

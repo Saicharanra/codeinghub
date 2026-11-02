@@ -23,12 +23,19 @@ export default function AdSlot({
   className = "",
   label = "Advertisement",
 }: AdSlotProps) {
-  const publisherId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const publisherId =
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT ||
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+
   const effectiveSlotId = slotId || process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT;
+
   const isEnabled = Boolean(
     publisherId &&
+    publisherId.trim() !== "" &&
+    publisherId !== "ca-pub-0000000000000000" &&
+    publisherId.startsWith("ca-pub-") &&
     effectiveSlotId &&
-    publisherId !== "ca-pub-0000000000000000"
+    effectiveSlotId.trim() !== ""
   );
 
   useEffect(() => {
@@ -37,25 +44,28 @@ export default function AdSlot({
       if (typeof window !== "undefined") {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
-    } catch (err) {
-      // Gracefully ignore
+    } catch {
+      // Gracefully ignore push errors if AdSense script is blocked by an ad-blocker
     }
   }, [isEnabled]);
 
-  // Strict check: collapse completely when publisher or slot ID is absent
+  // Completely collapse when unconfigured to prevent blank layout boxes
   if (!isEnabled) {
     return null;
   }
 
+  const minHeightClass =
+    format === "rectangle" ? "min-h-[250px]" : "min-h-[90px]";
+
   return (
-    <div
-      className={`my-8 flex flex-col items-center justify-center p-3 rounded border border-[#E7E7E3] bg-[#FAFAF8] text-center ${className}`}
+    <aside
+      className={`my-8 flex flex-col items-center justify-center p-3 rounded-lg border border-[#E7E7E3] bg-[#FAFAF8] text-center ${className}`}
       aria-label="Sponsored advertisement"
     >
-      <div className="text-[10px] uppercase tracking-wider text-[#737373] font-medium mb-2">
+      <div className="text-[10px] uppercase font-mono tracking-wider text-[#737373] font-semibold mb-2">
         {label}
       </div>
-      <div className="w-full overflow-hidden flex justify-center min-h-[90px]">
+      <div className={`w-full overflow-hidden flex justify-center ${minHeightClass}`}>
         <ins
           className="adsbygoogle block"
           style={{ display: "block" }}
@@ -65,6 +75,6 @@ export default function AdSlot({
           data-full-width-responsive={responsive ? "true" : "false"}
         />
       </div>
-    </div>
+    </aside>
   );
 }

@@ -8,6 +8,7 @@ import {
   validateGpaInput,
 } from "@/lib/calculators/cgpa";
 import ResultPanel from "./shared/ResultPanel";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function CgpaCalculator() {
   const [scale, setScale] = useState<10 | 4>(10);
@@ -64,7 +65,10 @@ export default function CgpaCalculator() {
             Grading Scale:
           </span>
           <button
-            onClick={() => setScale(10)}
+            onClick={() => {
+              setScale(10);
+              trackCalculationCompleted("cgpa-calculator", "scale_10");
+            }}
             className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
               scale === 10
                 ? "bg-[#176B50] text-white font-medium"
@@ -74,7 +78,10 @@ export default function CgpaCalculator() {
             10.0 Scale
           </button>
           <button
-            onClick={() => setScale(4)}
+            onClick={() => {
+              setScale(4);
+              trackCalculationCompleted("cgpa-calculator", "scale_4");
+            }}
             className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
               scale === 4
                 ? "bg-[#176B50] text-white font-medium"

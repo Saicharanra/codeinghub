@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { calculateAttendance } from "@/lib/calculators/attendance";
 import ResultPanel from "./shared/ResultPanel";
 import { AlertCircle, RotateCcw, Info } from "lucide-react";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function AttendanceCalculator() {
   const [conducted, setConducted] = useState<string>("48");
@@ -31,7 +32,10 @@ export default function AttendanceCalculator() {
           {presetTargets.map((preset) => (
             <button
               key={preset}
-              onClick={() => setTarget(preset)}
+              onClick={() => {
+                setTarget(preset);
+                trackCalculationCompleted("attendance-calculator", `target_${preset}`);
+              }}
               className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
                 target === preset
                   ? "bg-[#176B50] text-white font-medium"

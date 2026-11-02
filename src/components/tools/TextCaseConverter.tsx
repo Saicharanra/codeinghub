@@ -12,6 +12,7 @@ import {
   toSnakeCase,
   toKebabCase,
 } from "@/lib/calculators/textCase";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function TextCaseConverter() {
   const [inputText, setInputText] = useState<string>(
@@ -74,6 +75,7 @@ export default function TextCaseConverter() {
     if (!text) return;
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
+    trackCalculationCompleted("text-case-converter", `copy_${key}`);
     setTimeout(() => setCopiedKey(null), 2000);
   };
 

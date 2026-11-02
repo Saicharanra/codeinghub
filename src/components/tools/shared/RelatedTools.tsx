@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { toolsData } from "@/data/toolsData";
+import { trackRelatedToolClicked } from "@/lib/analytics";
 
 interface RelatedToolsProps {
   currentToolId: string;
@@ -31,6 +34,7 @@ export default function RelatedTools({
           <Link
             key={tool.id}
             href={tool.path}
+            onClick={() => trackRelatedToolClicked("related_tools_section", tool.id)}
             className="group p-4 rounded-lg bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-colors flex items-center justify-between"
           >
             <div>

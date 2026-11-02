@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Copy, Check, Trash2, Clock, Volume2, AlignLeft } from "lucide-react";
 import { analyzeText } from "@/lib/calculators/wordCounter";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function WordCounter() {
   const [text, setText] = useState<string>(
@@ -16,6 +17,7 @@ export default function WordCounter() {
     if (!text) return;
     navigator.clipboard.writeText(text);
     setCopied(true);
+    trackCalculationCompleted("word-counter", "copy_stats");
     setTimeout(() => setCopied(false), 2000);
   };
 

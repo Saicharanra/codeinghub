@@ -8,6 +8,7 @@ import {
 } from "@/lib/calculators/percentage";
 import ResultPanel from "./shared/ResultPanel";
 import { AlertCircle, RotateCcw } from "lucide-react";
+import { trackCalculationCompleted } from "@/lib/analytics";
 
 export default function PercentageCalculator() {
   const [activeTab, setActiveTab] = useState<"marks" | "ofNumber" | "change">("marks");
@@ -48,7 +49,10 @@ export default function PercentageCalculator() {
       <div className="flex flex-wrap items-center justify-between gap-3 p-1.5 rounded-lg bg-white border border-[#E7E7E3]">
         <div className="flex flex-wrap items-center gap-1">
           <button
-            onClick={() => setActiveTab("marks")}
+            onClick={() => {
+              setActiveTab("marks");
+              trackCalculationCompleted("percentage-calculator", "marks_percentage");
+            }}
             className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
               activeTab === "marks"
                 ? "bg-[#176B50] text-white font-medium"
@@ -58,7 +62,10 @@ export default function PercentageCalculator() {
             Mode A: Marks Percentage
           </button>
           <button
-            onClick={() => setActiveTab("ofNumber")}
+            onClick={() => {
+              setActiveTab("ofNumber");
+              trackCalculationCompleted("percentage-calculator", "percentage_of_number");
+            }}
             className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
               activeTab === "ofNumber"
                 ? "bg-[#176B50] text-white font-medium"
@@ -68,7 +75,10 @@ export default function PercentageCalculator() {
             Mode B: % of a Number
           </button>
           <button
-            onClick={() => setActiveTab("change")}
+            onClick={() => {
+              setActiveTab("change");
+              trackCalculationCompleted("percentage-calculator", "percentage_change");
+            }}
             className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
               activeTab === "change"
                 ? "bg-[#176B50] text-white font-medium"

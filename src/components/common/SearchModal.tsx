@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Search, X, ArrowRight } from "lucide-react";
 import { toolsData } from "@/data/toolsData";
 import { tutorialsData } from "@/data/tutorialsData";
+import { trackSearchPerformed } from "@/lib/analytics";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -67,6 +68,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   if (!isOpen) return null;
 
   const navigateTo = (path: string) => {
+    if (query.trim()) {
+      trackSearchPerformed(activeFilter, query.trim().length);
+    }
     onClose();
     router.push(path);
   };

@@ -1,3 +1,11 @@
-# Coding Hub - Google AdSense ads.txt placeholder
-# Replace pub-0000000000000000 with your approved Google AdSense publisher ID (found in AdSense > Account > Settings)
+# Coding Hub - Authorized Digital Sellers (ads.txt)
+# ==============================================================================
+# INSTRUCTIONS FOR SITE OWNER:
+# 1. Log in to your approved Google AdSense account at https://adsense.google.com
+# 2. Go to "Sites" > Click on your approved site > Copy the exact ads.txt snippet.
+# 3. Replace "pub-0000000000000000" below with your actual 16-digit publisher ID.
+#
+# Format:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# ==============================================================================
 google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

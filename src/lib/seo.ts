@@ -1,13 +1,29 @@
 import { Metadata } from "next";
 
+// Production fallback URL to ensure sitemap and canonical URLs are valid in all environments
+export const PRODUCTION_URL = "https://codinghub.dev";
+
+export function getBaseUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!envUrl) return PRODUCTION_URL;
+
+  // In production builds, avoid emitting localhost URLs
+  if (process.env.NODE_ENV === "production" && envUrl.includes("localhost")) {
+    return PRODUCTION_URL;
+  }
+
+  // Strip trailing slashes
+  return envUrl.replace(/\/+$/, "");
+}
+
 export const siteConfig = {
   name: "Coding Hub",
   shortName: "CodingHub",
   description:
     "Free online developer tools, student calculators, and comprehensive tech tutorials. Fast, privacy-friendly, and 100% free.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://codinghub.dev",
-  ogImage: "https://codinghub.dev/og-image.png",
-  author: "Coding Hub Team",
+  url: getBaseUrl(),
+  ogImage: `${getBaseUrl()}/og-image.png`,
+  author: "Coding Hub Technical Editorial Team",
   links: {
     github: "https://github.com",
     twitter: "https://twitter.com",
@@ -21,12 +37,12 @@ export const siteConfig = {
     "json formatter",
     "word counter",
     "case converter",
-    "python tutorials",
-    "sql tutorials",
+    "python programming tutorials",
+    "sql database tutorials",
     "power bi guide",
-    "data analytics",
-    "web development",
-    "javascript guide",
+    "data analytics techniques",
+    "web development guide",
+    "java programming tutorials",
   ],
 };
 
@@ -45,19 +61,35 @@ export function constructMetadata({
   noIndex?: boolean;
   type?: "website" | "article";
 }): Metadata {
-  const fullTitle = `${title} | ${siteConfig.name}`;
-  const url = canonicalUrl ? `${siteConfig.url}${canonicalUrl}` : siteConfig.url;
+  const cleanTitle = title.trim();
+  const fullTitle = cleanTitle.includes("Coding Hub")
+    ? cleanTitle
+    : `${cleanTitle} | ${siteConfig.name}`;
+
+  const baseUrl = getBaseUrl();
+  const url = canonicalUrl
+    ? `${baseUrl}${canonicalUrl.startsWith("/") ? canonicalUrl : `/${canonicalUrl}`}`
+    : baseUrl;
+
+  const verificationToken = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 
   return {
-    title: fullTitle,
+    title: {
+      absolute: fullTitle,
+    },
     description,
     keywords: siteConfig.keywords,
     authors: [{ name: siteConfig.author }],
     creator: siteConfig.author,
-    metadataBase: new URL(siteConfig.url),
+    metadataBase: new URL(baseUrl),
     alternates: {
       canonical: url,
     },
+    verification: verificationToken
+      ? {
+          google: verificationToken,
+        }
+      : undefined,
     openGraph: {
       title: fullTitle,
       description,

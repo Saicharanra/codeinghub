@@ -3,6 +3,7 @@ import Breadcrumbs from "@/components/common/Breadcrumbs";
 import ToolHeader from "./ToolHeader";
 import FAQSection, { FAQItem } from "./FAQSection";
 import RelatedTools from "./RelatedTools";
+import ToolAnalyticsTracker from "./ToolAnalyticsTracker";
 import AdSlot from "@/components/ads/AdSlot";
 
 interface HowToUseStep {
@@ -55,6 +56,7 @@ export default function ToolLayout({
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
+      <ToolAnalyticsTracker toolId={toolId} title={title} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedTools from "@/components/home/FeaturedTools";
 import CategoriesGrid from "@/components/home/CategoriesGrid";
@@ -6,6 +7,14 @@ import PopularTutorials from "@/components/home/PopularTutorials";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import NewsletterSection from "@/components/common/NewsletterSection";
 import AdSlot from "@/components/ads/AdSlot";
+import { constructMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Coding Hub — Useful Developer Tools, Academic Calculators & Tech Tutorials",
+  description:
+    "Free, fast, privacy-friendly online developer utilities and student calculators. CGPA Calculator, Attendance Calculator, JSON Formatter, Word Counter, Case Converter, and practical tech guides.",
+  canonicalUrl: "/",
+});
 
 export default function HomePage() {
   return (

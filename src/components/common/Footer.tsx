@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import CookiePreferencesButton from "@/components/common/CookiePreferencesButton";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -125,6 +126,9 @@ export default function Footer() {
                   Terms and Conditions
                 </Link>
               </li>
+              <li>
+                <CookiePreferencesButton className="hover:text-[#176B50] transition-colors text-left" />
+              </li>
             </ul>
           </div>
         </div>
@@ -140,6 +144,8 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-[#202124]">
               Terms
             </Link>
+            <span>&bull;</span>
+            <CookiePreferencesButton className="hover:text-[#202124] transition-colors" />
             <span>&bull;</span>
             <Link href="/contact" className="hover:text-[#202124]">
               Feedback

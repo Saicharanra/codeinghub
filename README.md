@@ -1,124 +1,111 @@
 # Coding Hub – Everything You Need to Learn, Build & Calculate
 
-Coding Hub is a modern, high-performance web platform providing free online tools and technical tutorials for engineering students, software developers, and data learners.
-
-![Coding Hub](https://codinghub.dev/og-image.png)
+**Coding Hub** is an all-in-one, privacy-focused online platform designed for university students, software engineers, and data analytics learners. Built with Next.js App Router, TypeScript, and Tailwind CSS.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Platform Architecture & Features
 
 ### 🎓 1. Student Calculators
-- **CGPA Calculator (`/tools/cgpa-calculator`)**: Supports multiple semesters, simple arithmetic mean vs. credit-weighted calculations, grade bracket visualization, and percentage conversion formulas.
-- **Percentage Calculator (`/tools/percentage-calculator`)**: Exam marks percentage, percentage change / differences, and ratio evaluations with real-time progress bars.
-- **Attendance Calculator (`/tools/attendance-calculator`)**: Current attendance percentage, calculation of consecutive classes required to reach 75%/80%/85% attendance criteria, and safe skip/bunk capacity forecasting.
+* **CGPA Calculator (`/tools/cgpa-calculator`):** Unweighted multi-semester averages for both 10.0 and 4.0 grading scales, with degree classifications and percentage conversion equivalents.
+* **Percentage Calculator (`/tools/percentage-calculator`):** Three calculation modes: Exam marks percentage (with visual score meter), percentage of a number, and percentage change.
+* **Attendance Calculator (`/tools/attendance-calculator`):** Real-time attendance rate calculation, consecutive classes required to reach 75% or 80%, and safe skip/bunk capacity forecasting.
 
 ### 💻 2. Developer Utilities
-- **JSON Formatter & Validator (`/tools/json-formatter`)**: 100% client-side JSON formatting, indentation switching (2-space, 4-space, compact minification), line-accurate syntax error locator, and sample data loader.
-- **Word & Character Counter (`/tools/word-counter`)**: Live count of words, characters (with and without whitespace), sentences, paragraphs, reading time, and speaking time estimates.
-- **Text Case Converter (`/tools/text-case-converter`)**: Conversions between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case, and CONSTANT_CASE with single-click clipboard copying.
+* **JSON Formatter & Validator (`/tools/json-formatter`):** Client-side formatting with 2-space or 4-space indentation, minification, precise syntax error line/column pointers, and file download.
+* **Word & Character Counter (`/tools/word-counter`):** Real-time word, character (with and without spaces), sentence, and paragraph counting, with reading and speaking duration estimations.
+* **Text Case Converter (`/tools/text-case-converter`):** Transform strings among UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, and kebab-case.
 
-### 📚 3. Comprehensive Educational Tutorials
-- **Python Programming Masterclass (`/tutorials/python-programming`)**: Syntax, memory references, list comprehensions, context managers, and file operations.
-- **SQL & Relational Databases (`/tutorials/sql`)**: Execution order, multi-table joins, GROUP BY aggregations, CTEs, and window functions (ROW_NUMBER, DENSE_RANK).
-- **Power BI & Business Analytics (`/tutorials/power-bi`)**: Star schema data modeling, VertiPaq engine, and advanced DAX formulas (CALCULATE, FILTER).
-- **Data Analytics Foundations (`/tutorials/data-analytics`)**: 5-stage analytics lifecycle, IQR outlier detection, descriptive statistics, and visualization ethics.
-- **Modern Web Development (`/tutorials/web-development`)**: Semantic HTML5, responsive CSS, React component models, and Next.js App Router architecture.
-- **JavaScript Deep Dive (`/tutorials/javascript`)**: Event loop, call stack, microtasks vs macrotasks, closures, and async/await orchestration.
+### 📚 3. Educational Content Academy
+Structured learning tracks across 6 technical domains with 12 in-depth starter tutorials:
+* **Python Programming (`/tutorials/python`):** Foundations, dynamic typing & variables, parameter scopes & functions.
+* **SQL and Databases (`/tutorials/sql`):** RDBMS fundamentals, SELECT/WHERE/ORDER BY filtering, and visual multi-table joins.
+* **Power BI (`/tutorials/power-bi`):** Architecture overview and Power Query ETL data transformation.
+* **Data Analytics (`/tutorials/data-analytics`):** Complete analytics lifecycle and practical spreadsheet data cleaning techniques.
+* **Web Development (`/tutorials/web-development`):** Semantic HTML5, CSS Box Model, and responsive grid layouts.
+* **Java Programming (`/tutorials/java`):** JVM execution model, strong typing, and core OOP pillars.
 
-### 🛡️ 4. Google AdSense & SEO Ready
-- **AdSlot Component**: Fully compliant reusable component that gracefully collapses when environment variables are omitted, preventing blank boxes or Cumulative Layout Shift (CLS).
-- **AdSense Policy Compliance**: Ads are strictly isolated from interactive controls, labeled with &quot;Advertisement&quot;, and `public/ads.txt` is prepared.
-- **Dynamic SEO**: Metadata API, Open Graph images, Twitter cards, dynamic `sitemap.xml`, and `robots.txt` with JSON-LD structured data.
+*Every tutorial includes learning objectives, interactive Table of Contents, syntax-annotated code blocks, pro tips, common mistakes to avoid, key takeaways, and FAQPage Schema.org structured data.*
 
 ---
 
-## 🛠️ Technology Stack
+## 🛡️ Technical SEO, Analytics & Monetization Readiness
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **UI Library**: [React](https://react.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Deployment**: [Vercel](https://vercel.com/)
+### 1. Search Engine Optimization (SEO)
+* **Metadata API:** Unique titles, meta descriptions, OpenGraph, and Twitter Cards across all 31 canonical URLs.
+* **Dynamic XML Sitemap:** Automatically generated at `/sitemap.xml` using the configured production domain.
+* **Robots.txt:** Generated at `/robots.txt` declaring crawler directives and sitemap location.
+* **Structured Data:** JSON-LD schemas embedded for `WebSite`, `WebApplication`, `CollectionPage`, `Article`, and `FAQPage`.
+* **Google Search Console:** Built-in ownership verification support via `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` meta tag or HTML verification file. See [`docs/SEARCH_CONSOLE_SETUP.md`](docs/SEARCH_CONSOLE_SETUP.md).
+
+### 2. Privacy-Conscious Google Analytics 4
+* Configured via `NEXT_PUBLIC_GA_ID`.
+* **Consent Gated:** GA4 scripts only initialize after the visitor grants consent on the Cookie Consent banner.
+* **Zero PII or Input Tracking:** Anonymized IP addresses. Never tracks user calculation values, grades, code, or personal text inputs.
+* **Next.js Client Navigation:** Accurately measures route changes without duplicate pageview events.
+
+### 3. Google AdSense Integration
+* Centralized, reusable `AdSlot` and `AdSenseScript` components supporting `NEXT_PUBLIC_ADSENSE_CLIENT`.
+* **Zero Blank Boxes:** Automatically collapses completely when unconfigured.
+* **CLS Prevention:** Reserves responsive layout dimensions (`min-h-[90px]`, `min-h-[250px]`) to eliminate layout shifts.
+* **Policy Compliance:** Clear "Advertisement" labels; never placed over buttons or interactive inputs.
+* **Authorized Digital Sellers:** Prepared `public/ads.txt` served at `/ads.txt`. See [`docs/ADSENSE_READINESS_AUDIT.md`](docs/ADSENSE_READINESS_AUDIT.md).
+
+### 4. Core Web Vitals & Performance
+* **System UI Font Stack:** Eliminates external font requests, FOIT/FOUT, and Cumulative Layout Shift.
+* **Client-Side Privacy:** Calculators execute locally in the browser with zero server round-trips.
+* **Security Headers:** Enforces `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and `Permissions-Policy`.
 
 ---
 
-## 💻 Local Development Setup
+## 🛠️ Environment Variables Configuration
 
-### Prerequisites
-- Node.js version 18.17+ or 20+
-- npm, yarn, or pnpm
+Copy `.env.example` to `.env.local`:
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/coding-hub.git
-cd coding-hub
-```
-
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Configure Environment Variables
-Copy the template file:
 ```bash
 cp .env.example .env.local
 ```
 
-Open `.env.local` and optionally configure your Google AdSense Publisher ID:
-```env
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_ADSENSE_CLIENT_ID=
-NEXT_PUBLIC_ADSENSE_SLOT_HEADER=
-NEXT_PUBLIC_ADSENSE_SLOT_CONTENT=
-NEXT_PUBLIC_ADSENSE_SLOT_FOOTER=
-```
-*(Note: If left blank, the site runs cleanly with zero empty ad containers or layout shifts).*
+| Variable | Description | Default / Example |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical domain for sitemap and metadata | `http://localhost:3000` (Dev) / `https://codinghub.dev` (Prod) |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console meta tag token | *(Optional)* `abc123xyz...` |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID | *(Optional)* `G-XXXXXXXXXX` |
+| `NEXT_PUBLIC_ADSENSE_CLIENT` | Google AdSense Publisher Account ID | *(Optional)* `ca-pub-XXXXXXXXXXXXXXXX` |
+| `NEXT_PUBLIC_ADSENSE_SLOT_HEADER` | AdSense Slot ID for header banner | *(Optional)* `1234567890` |
+| `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT` | AdSense Slot ID for content units | *(Optional)* `1234567890` |
+| `NEXT_PUBLIC_ADSENSE_SLOT_FOOTER` | AdSense Slot ID for footer banner | *(Optional)* `1234567890` |
 
-### 4. Start Development Server
+*Note: The website works with all optional variables left blank.*
+
+---
+
+## 💻 Local Development & Testing
+
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Run standalone calculator logic unit tests
+node scripts/test-calculators.mjs
+
+# 3. Run ESLint validation
+npm run lint
+
+# 4. Start local development server
 npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
-
-## 🧪 Production Build Validation
-
-To test the production build locally and verify zero compilation or TypeScript errors:
-
-```bash
+# 5. Build and prerender static production output
 npm run build
-npm start
 ```
 
 ---
 
-## 🚢 Deployment to Vercel
+## 🚢 Deployment
 
-1. Push your repository to **GitHub**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit of Coding Hub"
-   git branch -M main
-   git remote add origin https://github.com/your-username/coding-hub.git
-   git push -u origin main
-   ```
+Coding Hub is ready for one-click deployment on **Vercel**:
 
-2. Go to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Import your `coding-hub` GitHub repository.
-4. Framework Preset will be automatically detected as **Next.js**.
-5. Under **Environment Variables**, add:
-   - `NEXT_PUBLIC_SITE_URL`: Your custom domain (e.g., `https://codinghub.dev` or `https://coding-hub.vercel.app`)
-   - `NEXT_PUBLIC_ADSENSE_CLIENT_ID`: Your approved publisher ID (once verified by Google)
-6. Click **Deploy**.
-
----
-
-## 📄 License & Attribution
-
-This project is licensed under the MIT License. Free for educational and commercial use.
-Coding Hub – Built for students and developers worldwide.
+1. Push your repository to GitHub.
+2. In Vercel, click **Add New Project** and select your repository.
+3. Configure your production environment variables (`NEXT_PUBLIC_SITE_URL=https://yourdomain.com`).
+4. Click **Deploy**. All 36 static pages and sitemaps will prerender automatically.
