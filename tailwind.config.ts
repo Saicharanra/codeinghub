@@ -43,6 +43,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-inter)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -52,8 +53,17 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        heading: [
+          "var(--font-manrope)",
+          "Manrope",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "sans-serif",
+        ],
         mono: [
-          '"Geist Mono"',
+          "var(--font-jetbrains-mono)",
+          '"JetBrains Mono"',
           "ui-monospace",
           "SFMono-Regular",
           "Menlo",
@@ -61,6 +71,12 @@ const config: Config = {
           "Consolas",
           "monospace",
         ],
+      },
+      fontSize: {
+        hero: ["clamp(2.25rem, 4.5vw + 0.5rem, 3.75rem)", { lineHeight: "1.15", letterSpacing: "-0.03em" }],
+        "page-title": ["clamp(1.875rem, 3vw + 0.5rem, 3rem)", { lineHeight: "1.2", letterSpacing: "-0.025em" }],
+        "section-title": ["clamp(1.625rem, 2.2vw + 0.5rem, 2.5rem)", { lineHeight: "1.25", letterSpacing: "-0.02em" }],
+        "card-title": ["clamp(1.1875rem, 0.8vw + 0.95rem, 1.375rem)", { lineHeight: "1.35", letterSpacing: "-0.015em" }],
       },
       boxShadow: {
         subtle: "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",

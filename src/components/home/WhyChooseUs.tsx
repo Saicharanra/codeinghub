@@ -1,56 +1,59 @@
 import React from "react";
-import { Zap, Lock, ShieldCheck, CheckCheck } from "lucide-react";
+import { Zap, Lock, CheckCheck, ShieldCheck, Cpu, Code2 } from "lucide-react";
 
 export default function WhyChooseUs() {
   const pillars = [
     {
-      title: "Client-Side Execution",
+      title: "100% Client-Side Privacy",
       description:
-        "All calculations and formatting occur locally in your browser. Your grades, JSON objects, and text inputs never leave your computer.",
-      icon: <Lock className="w-4 h-4 text-[#176B50]" />,
+        "All GPA calculations, attendance projections, JSON formatting, and text conversions occur locally in your browser. No grades, files, or typed inputs are ever transmitted to any remote server.",
+      icon: <Lock className="w-5 h-5 text-[#176B50]" />,
     },
     {
-      title: "Immediate Feedback",
+      title: "Zero Sign-Up or Paywalls",
       description:
-        "Zero server roundtrips. Tools calculate instantly on every keystroke without page reloads or loading spinners.",
-      icon: <Zap className="w-4 h-4 text-[#176B50]" />,
+        "Access all 6 calculators and 12 technical guides completely free. No mandatory registrations, credit cards, or trial expirations. Open the tool and start working immediately.",
+      icon: <Zap className="w-5 h-5 text-[#176B50]" />,
     },
     {
-      title: "Clear, Verified Formulas",
+      title: "Verified Calculation Formulas",
       description:
-        "Our CGPA credit-weighting formulas and attendance calculations mirror official criteria from university and college handbooks.",
-      icon: <CheckCheck className="w-4 h-4 text-[#176B50]" />,
+        "Our CGPA conversions and attendance formulas are modelled after university academic regulations and international percentage conversion standards.",
+      icon: <CheckCheck className="w-5 h-5 text-[#176B50]" />,
     },
     {
-      title: "Usability-Focused Design",
+      title: "Clean, Distraction-Free Reading",
       description:
-        "No intrusive full-screen popups, fake download buttons, or deceptive layouts. Tools are placed front and center.",
-      icon: <ShieldCheck className="w-4 h-4 text-[#176B50]" />,
+        "Engineered with clean typography, restrained light aesthetics, and zero invasive popups or deceptive click zones. Focused entirely on utility and readability.",
+      icon: <ShieldCheck className="w-5 h-5 text-[#176B50]" />,
     },
   ];
 
   return (
-    <section className="py-14 sm:py-16 border-b border-[#E7E7E3]">
+    <section className="py-12 sm:py-16 border-b border-[#E7E7E3]" id="why-choose-us">
       <div className="mb-8">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#202124] tracking-tight">
-          Why Coding Hub
+        <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#176B50] mb-1">
+          Guiding Philosophy
+        </div>
+        <h2 className="text-section-title font-bold text-[#202124] tracking-tight leading-[1.25]">
+          Why Choose Coding Hub?
         </h2>
-        <p className="text-xs sm:text-sm text-[#737373] mt-1">
-          Designed intentionally to be fast, private, and distraction-free.
+        <p className="text-[15px] sm:text-base text-[#737373] mt-1.5 leading-relaxed">
+          Designed intentionally to be fast, honest, and completely free for everyday academic and engineering tasks.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {pillars.map((pillar, idx) => (
           <div
             key={idx}
-            className="p-5 rounded-lg border border-[#E7E7E3] bg-[#FFFFFF] space-y-2.5 shadow-subtle"
+            className="p-5 sm:p-6 rounded-xl border border-[#E7E7E3] bg-white space-y-3 shadow-subtle hover:border-[#176B50] transition-colors"
           >
-            <div className="w-8 h-8 rounded bg-[#EBF5F1] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-[#EBF5F1] border border-[#C8E3D8] flex items-center justify-center">
               {pillar.icon}
             </div>
-            <h3 className="text-sm font-semibold text-[#202124]">{pillar.title}</h3>
-            <p className="text-xs text-[#737373] leading-relaxed">
+            <h3 className="text-[18px] font-semibold text-[#202124] leading-snug">{pillar.title}</h3>
+            <p className="text-[14px] text-[#737373] leading-relaxed">
               {pillar.description}
             </p>
           </div>

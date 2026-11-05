@@ -68,7 +68,7 @@ cp .env.example .env.local
 
 | Variable | Description | Default / Example |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canonical domain for sitemap and metadata | `http://localhost:3000` (Dev) / `https://codinghub.dev` (Prod) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical domain for sitemap and metadata | `http://localhost:3000` (Dev) / `https://codeinghub.me` (Prod) |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console meta tag token | *(Optional)* `abc123xyz...` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID | *(Optional)* `G-XXXXXXXXXX` |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | Google AdSense Publisher Account ID | *(Optional)* `ca-pub-XXXXXXXXXXXXXXXX` |

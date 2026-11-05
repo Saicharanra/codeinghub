@@ -34,7 +34,7 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="text-lg sm:text-xl font-bold text-[#202124]">1. Acceptance of Terms</h2>
           <p className="text-[#737373]">
-            By accessing and utilizing Coding Hub (https://codinghub.dev), you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions. If you do not agree with any of these terms, you are prohibited from using or accessing this platform.
+            By accessing and utilizing Coding Hub (https://codeinghub.me), you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions. If you do not agree with any of these terms, you are prohibited from using or accessing this platform.
           </p>
         </section>
 
@@ -89,7 +89,7 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="text-lg sm:text-xl font-bold text-[#202124]">8. Contact Information</h2>
           <p className="text-[#737373]">
-            For any legal inquiries or questions regarding these terms, please contact us at: <code>contact@codinghub.dev</code>.
+            For any legal inquiries or questions regarding these terms, please contact us at: <code>contact@codeinghub.me</code>.
           </p>
         </section>
       </div>

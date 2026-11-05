@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 // Production fallback URL to ensure sitemap and canonical URLs are valid in all environments
-export const PRODUCTION_URL = "https://codinghub.dev";
+export const PRODUCTION_URL = "https://codeinghub.me";
 
 export function getBaseUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL;

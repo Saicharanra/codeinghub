@@ -89,7 +89,7 @@ export default function ToolsDirectoryClient() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded text-xs font-mono whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded text-[13px] sm:text-[14px] font-medium whitespace-nowrap transition-colors ${
                 selectedCategory === cat
                   ? "bg-[#176B50] text-white font-semibold"
                   : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
@@ -147,15 +147,15 @@ export default function ToolsDirectoryClient() {
                   <div className="text-[11px] font-mono text-[#737373] uppercase tracking-wider mb-1">
                     {tool.category}
                   </div>
-                  <h3 className="text-base font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors mb-1.5">
+                  <h3 className="text-card-title font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors mb-1.5">
                     {tool.name}
                   </h3>
-                  <p className="text-xs text-[#737373] leading-relaxed mb-4">
+                  <p className="text-[14px] text-[#737373] leading-relaxed mb-4">
                     {tool.shortDescription}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#E7E7E3] flex items-center justify-between text-xs font-medium text-[#202124] group-hover:text-[#176B50] transition-colors">
+                <div className="pt-3 border-t border-[#E7E7E3] flex items-center justify-between text-[14px] font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors">
                   <span>Open tool</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>

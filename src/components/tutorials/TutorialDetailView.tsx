@@ -16,6 +16,7 @@ import AdSlot from "@/components/ads/AdSlot";
 import { TutorialItem } from "@/data/tutorialsData";
 import { toolsData } from "@/data/toolsData";
 import { tutorialsData } from "@/data/tutorialsData";
+import { siteConfig } from "@/lib/seo";
 
 interface TutorialDetailViewProps {
   tutorial: TutorialItem;
@@ -52,12 +53,12 @@ export default function TutorialDetailView({ tutorial }: TutorialDetailViewProps
       name: "Coding Hub",
       logo: {
         "@type": "ImageObject",
-        url: "https://codinghub.dev/logo.png",
+        url: `${siteConfig.url}/logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://codinghub.dev/tutorials/${tutorial.slug}`,
+      "@id": `${siteConfig.url}/tutorials/${tutorial.slug}`,
     },
   };
 

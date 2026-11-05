@@ -87,10 +87,10 @@ export default function TutorialsHomeClient() {
             <BookOpen className="w-3.5 h-3.5" />
             <span>Open Learning Academy</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#202124] tracking-tight">
+          <h1 className="text-page-title font-bold text-[#202124] tracking-tight leading-[1.2]">
             Learn Something New.
           </h1>
-          <p className="text-sm sm:text-base text-[#737373] max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#737373] max-w-2xl leading-relaxed font-normal">
             Clear, original, step-by-step programming, database, and analytics tutorials designed for students, developers, and aspiring data professionals.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function TutorialsHomeClient() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search tutorials by keyword (e.g. Python functions, SQL JOIN, Power Query, HTML, Java)..."
-              className="w-full pl-10 pr-10 py-3 rounded-md bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] placeholder-[#737373] text-sm focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50] transition-colors"
+              className="w-full pl-10 pr-10 py-3 rounded-md bg-[#FAFAF8] border border-[#E7E7E3] text-[#202124] placeholder-[#737373] text-[15px] focus:outline-none focus:border-[#176B50] focus:ring-1 focus:ring-[#176B50] transition-colors"
             />
             {search && (
               <button
@@ -121,7 +121,7 @@ export default function TutorialsHomeClient() {
           <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5">
             <button
               onClick={() => setSelectedCategory("All")}
-              className={`px-3 py-1.5 rounded text-xs font-mono whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded text-[13px] sm:text-[14px] font-medium whitespace-nowrap transition-colors ${
                 selectedCategory === "All"
                   ? "bg-[#176B50] text-white font-semibold"
                   : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
@@ -133,7 +133,7 @@ export default function TutorialsHomeClient() {
               <button
                 key={cat.slug}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3 py-1.5 rounded text-xs font-mono whitespace-nowrap transition-colors ${
+                className={`px-3 py-1.5 rounded text-[13px] sm:text-[14px] font-medium whitespace-nowrap transition-colors ${
                   selectedCategory === cat.slug
                     ? "bg-[#176B50] text-white font-semibold"
                     : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
@@ -206,13 +206,13 @@ export default function TutorialsHomeClient() {
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-[#202124] group-hover:text-[#176B50] transition-colors leading-snug">
+                    <h3 className="text-card-title font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors leading-snug">
                       <Link href={`/tutorials/${tut.categorySlug}/${tut.slug}`}>
                         {tut.title}
                       </Link>
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[#737373] leading-relaxed line-clamp-3">
+                    <p className="text-[14px] sm:text-[15px] text-[#737373] leading-relaxed line-clamp-3">
                       {tut.summary}
                     </p>
                   </div>
@@ -220,7 +220,7 @@ export default function TutorialsHomeClient() {
                   <div className="pt-3 border-t border-[#E7E7E3]">
                     <Link
                       href={`/tutorials/${tut.categorySlug}/${tut.slug}`}
-                      className="w-full inline-flex items-center justify-between text-xs font-semibold text-[#176B50] group-hover:text-[#12543E] transition-colors"
+                      className="w-full inline-flex items-center justify-between text-[14px] font-semibold text-[#176B50] group-hover:text-[#12543E] transition-colors"
                     >
                       <span>Read Guide</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -242,7 +242,7 @@ export default function TutorialsHomeClient() {
                   <Sparkles className="w-3.5 h-3.5 text-[#176B50]" />
                   <span>Editor&apos;s Selection</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight mt-0.5">
+                <h2 className="text-section-title font-bold text-[#202124] tracking-tight mt-1 leading-[1.25]">
                   Featured Tutorials
                 </h2>
               </div>
@@ -270,13 +270,13 @@ export default function TutorialsHomeClient() {
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[#202124] group-hover:text-[#176B50] transition-colors leading-snug">
+                    <h3 className="text-card-title font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors leading-snug">
                       <Link href={`/tutorials/${tut.categorySlug}/${tut.slug}`}>
                         {tut.title}
                       </Link>
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[#737373] leading-relaxed line-clamp-3">
+                    <p className="text-[14px] sm:text-[15px] text-[#737373] leading-relaxed line-clamp-3">
                       {tut.summary}
                     </p>
 
@@ -286,7 +286,7 @@ export default function TutorialsHomeClient() {
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span>Key learning:</span>
                         </div>
-                        <p className="text-xs text-[#737373] line-clamp-1 italic">
+                        <p className="text-[13px] text-[#737373] line-clamp-1 italic">
                           {tut.learningObjectives[0]}
                         </p>
                       </div>
@@ -296,7 +296,7 @@ export default function TutorialsHomeClient() {
                   <div className="pt-3 border-t border-[#E7E7E3] relative z-10">
                     <Link
                       href={`/tutorials/${tut.categorySlug}/${tut.slug}`}
-                      className="w-full inline-flex items-center justify-between text-xs font-semibold text-[#176B50] group-hover:text-[#12543E] transition-colors"
+                      className="w-full inline-flex items-center justify-between text-[14px] font-semibold text-[#176B50] group-hover:text-[#12543E] transition-colors"
                     >
                       <span>Start Learning</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -311,10 +311,10 @@ export default function TutorialsHomeClient() {
           <section className="space-y-5">
             <div className="flex items-baseline justify-between border-b border-[#E7E7E3] pb-3">
               <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight">
+                <h2 className="text-section-title font-bold text-[#202124] tracking-tight leading-[1.25]">
                   Browse by Learning Track
                 </h2>
-                <p className="text-xs sm:text-sm text-[#737373] mt-0.5">
+                <p className="text-[15px] sm:text-base text-[#737373] mt-1 leading-relaxed">
                   Explore full curriculums structured across six technical domains.
                 </p>
               </div>
@@ -333,7 +333,7 @@ export default function TutorialsHomeClient() {
                   <Link
                     key={cat.id}
                     href={cat.path}
-                    className="p-5 rounded-lg bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-all flex flex-col justify-between space-y-3 group shadow-subtle hover:shadow-card"
+                    className="p-5 sm:p-6 rounded-xl bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-all flex flex-col justify-between space-y-3 group shadow-subtle hover:shadow-card"
                   >
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
@@ -345,16 +345,16 @@ export default function TutorialsHomeClient() {
                         </span>
                       </div>
 
-                      <h3 className="text-base font-bold text-[#202124] group-hover:text-[#176B50] transition-colors">
+                      <h3 className="text-card-title font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors">
                         {cat.name}
                       </h3>
 
-                      <p className="text-xs text-[#737373] leading-relaxed line-clamp-2">
+                      <p className="text-[14px] text-[#737373] leading-relaxed line-clamp-2">
                         {cat.shortDescription}
                       </p>
                     </div>
 
-                    <div className="pt-2 border-t border-[#F0F0EC] flex items-center justify-between text-xs font-medium text-[#176B50]">
+                    <div className="pt-2 border-t border-[#F0F0EC] flex items-center justify-between text-[14px] font-semibold text-[#176B50]">
                       <span>Explore {cat.name}</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </div>

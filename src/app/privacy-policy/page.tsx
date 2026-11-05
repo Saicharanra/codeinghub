@@ -36,15 +36,15 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-3">
           <h2 className="text-lg sm:text-xl font-bold text-[#202124]">1. Introduction</h2>
           <p className="text-[#737373]">
-            At <strong className="text-[#202124]">Coding Hub</strong> (accessible from https://codinghub.dev), we believe that educational and developer utilities should respect user privacy by default. This Privacy Policy outlines the types of information we process, the third-party services we utilize, and the granular controls you have over your data.
+            At <strong className="text-[#202124]">Coding Hub</strong> (accessible from https://codeinghub.me), we believe that educational and developer utilities should respect user privacy by default. This Privacy Policy outlines the types of information we process, the third-party services we utilize, and the granular controls you have over your data.
           </p>
           <p className="text-[#737373]">
             If you have questions or require additional clarifications regarding our privacy practices, you can contact our technical team at{" "}
             <a
-              href="mailto:contact@codinghub.dev"
+              href="mailto:contact@codeinghub.me"
               className="text-[#176B50] font-mono hover:underline"
             >
-              contact@codinghub.dev
+              contact@codeinghub.me
             </a>.
           </p>
         </section>
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-3">
           <h2 className="text-lg sm:text-xl font-bold text-[#202124]">8. Children&apos;s Information (COPPA)</h2>
           <p className="text-[#737373]">
-            Protecting younger learners is essential. Coding Hub does not knowingly collect personally identifiable information from children under the age of 13. If you believe that a child has provided personal information through our contact channels, please notify us immediately at <code>contact@codinghub.dev</code> and we will promptly remove such records.
+            Protecting younger learners is essential. Coding Hub does not knowingly collect personally identifiable information from children under the age of 13. If you believe that a child has provided personal information through our contact channels, please notify us immediately at <code>contact@codeinghub.me</code> and we will promptly remove such records.
           </p>
         </section>
 
@@ -172,8 +172,8 @@ export default function PrivacyPolicyPage() {
           </p>
           <div className="p-4 rounded-lg bg-white border border-[#E7E7E3] space-y-1 text-xs font-mono">
             <div><strong>Coding Hub Technical Team</strong></div>
-            <div>Email: <a href="mailto:contact@codinghub.dev" className="text-[#176B50] underline">contact@codinghub.dev</a></div>
-            <div>Website: <a href="https://codinghub.dev" className="text-[#176B50] underline">https://codinghub.dev</a></div>
+            <div>Email: <a href="mailto:contact@codeinghub.me" className="text-[#176B50] underline">contact@codeinghub.me</a></div>
+            <div>Website: <a href="https://codeinghub.me" className="text-[#176B50] underline">https://codeinghub.me</a></div>
           </div>
         </section>
       </div>

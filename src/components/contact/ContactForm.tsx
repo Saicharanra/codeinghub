@@ -63,10 +63,10 @@ export default function ContactForm() {
               <div>
                 <span className="text-[11px] font-mono text-[#737373] block">Support Email</span>
                 <a
-                  href="mailto:contact@codinghub.dev"
+                  href="mailto:contact@codeinghub.me"
                   className="text-xs sm:text-sm font-mono font-medium text-[#202124] hover:text-[#176B50] transition-colors"
                 >
-                  contact@codinghub.dev
+                  contact@codeinghub.me
                 </a>
               </div>
             </div>

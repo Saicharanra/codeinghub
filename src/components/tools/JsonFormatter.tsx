@@ -10,9 +10,11 @@ import {
   AlertCircle,
   CheckCircle2,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 import { processJson } from "@/lib/calculators/json";
 import { trackCalculationCompleted } from "@/lib/analytics";
+import { showToast } from "@/components/common/Toast";
 
 export default function JsonFormatter() {
   const sampleJson = `{
@@ -41,16 +43,19 @@ export default function JsonFormatter() {
 
   const loadSample = () => {
     setInputJson(sampleJson);
+    showToast("Sample JSON loaded", "success");
   };
 
   const handleClear = () => {
     setInputJson("");
+    showToast("Editor cleared", "info");
   };
 
   const handleCopy = () => {
     if (!result.isValid || !result.formatted) return;
     navigator.clipboard.writeText(result.formatted);
     setCopied(true);
+    showToast("Formatted JSON copied to clipboard", "success");
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -63,6 +68,7 @@ export default function JsonFormatter() {
     a.download = indentMode === "compact" ? "minified.json" : "formatted.json";
     a.click();
     URL.revokeObjectURL(url);
+    showToast("JSON file downloaded", "success");
   };
 
   return (
@@ -70,7 +76,7 @@ export default function JsonFormatter() {
       {/* Control Bar: Indentation options & sample load */}
       <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-lg bg-white border border-[#E7E7E3]">
         <div className="flex items-center gap-1.5">
-          <span className="text-xs font-mono font-medium text-[#737373] uppercase tracking-wider mr-1">
+          <span className="text-[13px] font-mono font-medium text-[#737373] uppercase tracking-wider mr-1">
             Indentation:
           </span>
           <button
@@ -78,9 +84,9 @@ export default function JsonFormatter() {
               setIndentMode(2);
               trackCalculationCompleted("json-formatter", "indent_2_spaces");
             }}
-            className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
+            className={`px-3 py-1 rounded text-[13px] sm:text-[14px] font-medium transition-colors ${
               indentMode === 2
-                ? "bg-[#176B50] text-white font-medium"
+                ? "bg-[#176B50] text-white font-semibold"
                 : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
             }`}
           >
@@ -91,9 +97,9 @@ export default function JsonFormatter() {
               setIndentMode(4);
               trackCalculationCompleted("json-formatter", "indent_4_spaces");
             }}
-            className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
+            className={`px-3 py-1 rounded text-[13px] sm:text-[14px] font-medium transition-colors ${
               indentMode === 4
-                ? "bg-[#176B50] text-white font-medium"
+                ? "bg-[#176B50] text-white font-semibold"
                 : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
             }`}
           >
@@ -104,9 +110,9 @@ export default function JsonFormatter() {
               setIndentMode("compact");
               trackCalculationCompleted("json-formatter", "minify_compact");
             }}
-            className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
+            className={`px-3 py-1 rounded text-[13px] sm:text-[14px] font-medium transition-colors ${
               indentMode === "compact"
-                ? "bg-[#176B50] text-white font-medium"
+                ? "bg-[#176B50] text-white font-semibold"
                 : "bg-[#FAFAF8] text-[#737373] hover:text-[#202124] border border-[#E7E7E3]"
             }`}
           >
@@ -117,13 +123,15 @@ export default function JsonFormatter() {
         <div className="flex items-center gap-2">
           <button
             onClick={loadSample}
-            className="px-2.5 py-1 rounded text-xs font-mono text-[#737373] hover:text-[#202124] bg-[#FAFAF8] border border-[#E7E7E3] hover:border-[#D3D3CD] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[13px] sm:text-[14px] font-medium text-[#176B50] hover:text-[#12543E] bg-[#EBF5F1] hover:bg-[#DDF0E8] border border-[#C8E3D8] transition-colors"
+            title="Load sample JSON payload"
           >
-            Sample
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Load Sample</span>
           </button>
           <button
             onClick={handleClear}
-            className="px-2.5 py-1 rounded text-xs font-mono text-[#737373] hover:text-[#991B1B] bg-[#FAFAF8] border border-[#E7E7E3] hover:border-[#F5C2C7] flex items-center gap-1 transition-colors"
+            className="px-3 py-1.5 rounded text-[13px] sm:text-[14px] font-medium text-[#737373] hover:text-[#991B1B] bg-[#FAFAF8] border border-[#E7E7E3] hover:border-[#F5C2C7] flex items-center gap-1 transition-colors"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Clear</span>
@@ -160,8 +168,8 @@ export default function JsonFormatter() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Input Textarea */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs font-mono text-[#737373] px-1">
-            <span className="font-medium uppercase tracking-wider text-[#202124]">
+          <div className="flex items-center justify-between text-[13px] font-mono text-[#737373] px-1">
+            <span className="font-semibold uppercase tracking-wider text-[#202124]">
               Raw JSON Input
             </span>
             <span>{inputJson.length} chars</span>
@@ -172,7 +180,7 @@ export default function JsonFormatter() {
               onChange={(e) => setInputJson(e.target.value)}
               placeholder="Paste or type raw JSON here..."
               rows={16}
-              className="w-full p-4 bg-transparent text-[#202124] font-mono text-xs sm:text-sm focus:outline-none resize-y leading-relaxed"
+              className="w-full p-4 bg-transparent text-[#202124] font-mono text-[14px] sm:text-[14.5px] focus:outline-none resize-y leading-relaxed"
               spellCheck={false}
             />
           </div>
@@ -180,8 +188,8 @@ export default function JsonFormatter() {
 
         {/* Output Textarea */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs font-mono text-[#737373] px-1">
-            <span className="font-medium uppercase tracking-wider text-[#202124]">
+          <div className="flex items-center justify-between text-[13px] font-mono text-[#737373] px-1">
+            <span className="font-semibold uppercase tracking-wider text-[#202124]">
               Formatted / Minified Output
             </span>
             <div className="flex items-center gap-2">
@@ -192,7 +200,7 @@ export default function JsonFormatter() {
                 title="Download JSON file"
                 aria-label="Download JSON file"
               >
-                <Download className="w-3.5 h-3.5" />
+                <Download className="w-4 h-4" />
               </button>
               <button
                 onClick={handleCopy}
@@ -201,7 +209,7 @@ export default function JsonFormatter() {
                 title="Copy to clipboard"
                 aria-label="Copy to clipboard"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-[#176B50]" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? <Check className="w-4 h-4 text-[#176B50]" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
           </div>
@@ -211,7 +219,7 @@ export default function JsonFormatter() {
               value={result.isValid ? result.formatted : ""}
               readOnly
               rows={16}
-              className="w-full p-4 bg-transparent text-[#202124] font-mono text-xs sm:text-sm focus:outline-none resize-y leading-relaxed select-all"
+              className="w-full p-4 bg-transparent text-[#202124] font-mono text-[14px] sm:text-[14.5px] focus:outline-none resize-y leading-relaxed select-all"
               placeholder="Formatted output will appear here..."
               spellCheck={false}
             />

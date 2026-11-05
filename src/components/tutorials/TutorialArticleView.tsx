@@ -8,6 +8,7 @@ import {
   Copy,
   Check,
   ArrowRight,
+  ArrowLeft,
   HelpCircle,
   Lightbulb,
   AlertTriangle,
@@ -23,6 +24,7 @@ import { TutorialItem, tutorialsData } from "@/data/tutorialsData";
 import { toolsData } from "@/data/toolsData";
 import { categoriesData } from "@/data/categoriesData";
 import { trackTutorialOpened, trackRelatedToolClicked } from "@/lib/analytics";
+import { siteConfig } from "@/lib/seo";
 
 interface TutorialArticleViewProps {
   tutorial: TutorialItem;
@@ -62,6 +64,29 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
     tutorial.relatedTutorials.includes(t.slug) || tutorial.relatedTutorials.includes(t.id)
   );
 
+  // Compute category-aware previous and next tutorial navigation
+  const categoryTutorials = tutorialsData.filter(
+    (t) => t.categorySlug.toLowerCase() === tutorial.categorySlug.toLowerCase()
+  );
+  const currentCategoryIndex = categoryTutorials.findIndex(
+    (t) => t.slug === tutorial.slug
+  );
+  const fullIndex = tutorialsData.findIndex((t) => t.slug === tutorial.slug);
+
+  const prevTutorial =
+    currentCategoryIndex > 0
+      ? categoryTutorials[currentCategoryIndex - 1]
+      : fullIndex > 0
+      ? tutorialsData[fullIndex - 1]
+      : null;
+
+  const nextTutorial =
+    currentCategoryIndex < categoryTutorials.length - 1
+      ? categoryTutorials[currentCategoryIndex + 1]
+      : fullIndex < tutorialsData.length - 1
+      ? tutorialsData[fullIndex + 1]
+      : null;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -79,12 +104,12 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
       name: "Coding Hub",
       logo: {
         "@type": "ImageObject",
-        url: "https://codinghub.dev/logo.png",
+        url: `${siteConfig.url}/logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://codinghub.dev/tutorials/${tutorial.categorySlug}/${tutorial.slug}`,
+      "@id": `${siteConfig.url}/tutorials/${tutorial.categorySlug}/${tutorial.slug}`,
     },
   };
 
@@ -167,11 +192,11 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
           </button>
         </div>
 
-        <h1 className="text-2xl sm:text-4xl font-bold text-[#202124] tracking-tight leading-tight">
+        <h1 className="text-page-title font-bold text-[#202124] tracking-tight leading-[1.2]">
           {tutorial.title}
         </h1>
 
-        <p className="text-base sm:text-lg text-[#737373] leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-[#737373] leading-relaxed max-w-3xl font-normal">
           {tutorial.subtitle}
         </p>
 
@@ -256,20 +281,20 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
                 id={section.id}
                 className="scroll-mt-24 space-y-4 pt-6 first:pt-0"
               >
-                <div className="border-b border-[#E7E7E3] pb-2">
-                  <h2 className="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight">
+                <div className="border-b border-[#E7E7E3] pb-2.5">
+                  <h2 className="text-section-title font-bold text-[#202124] tracking-tight leading-[1.25]">
                     {section.heading}
                   </h2>
                   {section.subheading && (
-                    <p className="text-xs font-mono text-[#737373] mt-1">
+                    <p className="text-[14px] sm:text-[15px] font-mono text-[#737373] mt-1.5">
                       {section.subheading}
                     </p>
                   )}
                 </div>
 
-                <div className="space-y-3 text-sm sm:text-base leading-relaxed text-[#202124]">
+                <div className="space-y-4 text-base sm:text-[17px] leading-[1.68] text-[#202124]">
                   {section.content.map((p, pIdx) => (
-                    <p key={pIdx} className="leading-relaxed">
+                    <p key={pIdx} className="leading-[1.68]">
                       {p}
                     </p>
                   ))}
@@ -277,20 +302,20 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
 
                 {/* Code Block with One-Click Copy */}
                 {section.codeBlock && (
-                  <div className="rounded-lg border border-[#E7E7E3] bg-[#FAFAF8] overflow-hidden my-4 shadow-subtle">
-                    <div className="flex items-center justify-between px-3.5 py-2 bg-white border-b border-[#E7E7E3] text-xs">
-                      <span className="font-mono text-[#737373] uppercase text-[11px] font-semibold">
+                  <div className="rounded-xl border border-[#E7E7E3] bg-[#FAFAF8] overflow-hidden my-5 shadow-subtle">
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-white border-b border-[#E7E7E3] text-xs">
+                      <span className="font-mono text-[#737373] uppercase text-[12px] font-semibold">
                         {section.codeBlock.language}
                       </span>
                       <button
                         onClick={() => handleCopyCode(section.codeBlock!.code, idx)}
-                        className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#FAFAF8] hover:bg-white text-[#202124] text-xs font-mono transition-colors border border-[#E7E7E3]"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FAFAF8] hover:bg-white text-[#202124] text-[13px] font-mono transition-colors border border-[#E7E7E3]"
                         aria-label="Copy code snippet"
                       >
                         {copiedCodeIndex === idx ? (
                           <>
                             <Check className="w-3.5 h-3.5 text-[#176B50]" />
-                            <span className="text-[#176B50] font-medium">Copied</span>
+                            <span className="text-[#176B50] font-semibold">Copied</span>
                           </>
                         ) : (
                           <>
@@ -300,11 +325,11 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
                         )}
                       </button>
                     </div>
-                    <pre className="p-4 sm:p-5 overflow-x-auto text-xs sm:text-sm font-mono text-[#202124] leading-relaxed">
+                    <pre className="p-4 sm:p-5 overflow-x-auto text-[14px] sm:text-[14.5px] font-mono text-[#202124] leading-[1.65]">
                       <code>{section.codeBlock.code}</code>
                     </pre>
                     {section.codeBlock.explanation && (
-                      <div className="px-4 py-2.5 bg-white border-t border-[#E7E7E3] text-xs text-[#737373] font-mono">
+                      <div className="px-4 py-3 bg-white border-t border-[#E7E7E3] text-[13px] sm:text-[14px] text-[#737373] font-mono leading-relaxed">
                         <strong className="text-[#202124]">Key note:</strong>{" "}
                         {section.codeBlock.explanation}
                       </div>
@@ -371,7 +396,7 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
           {/* Frequently Asked Questions */}
           {tutorial.faqs && tutorial.faqs.length > 0 && (
             <section className="space-y-4 border-t border-[#E7E7E3] pt-8">
-              <div className="flex items-center gap-2 text-lg sm:text-xl font-bold text-[#202124]">
+              <div className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-[#202124]">
                 <HelpCircle className="w-5 h-5 text-[#176B50]" />
                 <span>Frequently Asked Questions</span>
               </div>
@@ -382,10 +407,10 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
                     key={fIdx}
                     className="p-4 sm:p-5 rounded-lg bg-white border border-[#E7E7E3] space-y-1.5"
                   >
-                    <h3 className="text-sm sm:text-base font-semibold text-[#202124]">
+                    <h3 className="text-[17px] sm:text-[18px] font-semibold text-[#202124] leading-snug">
                       {faq.question}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+                    <p className="text-[15px] text-[#737373] leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -393,6 +418,63 @@ export default function TutorialArticleView({ tutorial }: TutorialArticleViewPro
               </div>
             </section>
           )}
+
+          {/* Previous / Next Tutorial Navigation Pager */}
+          <nav aria-label="Tutorial pagination" className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#E7E7E3] pt-8">
+            {prevTutorial ? (
+              <Link
+                href={`/tutorials/${prevTutorial.categorySlug}/${prevTutorial.slug}`}
+                className="p-5 rounded-xl bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-all hover:shadow-subtle group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-1.5 text-[12px] font-mono text-[#737373] group-hover:text-[#176B50] mb-2">
+                    <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
+                    <span className="uppercase tracking-wider font-semibold">Previous Guide</span>
+                  </div>
+                  <h4 className="text-[15px] sm:text-base font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors line-clamp-2 leading-snug">
+                    {prevTutorial.title}
+                  </h4>
+                </div>
+                <div className="flex items-center gap-2 mt-3.5 text-[12px] font-mono text-[#737373]">
+                  <span className="px-2 py-0.5 rounded bg-[#FAFAF8] border border-[#E7E7E3]">
+                    {prevTutorial.category}
+                  </span>
+                  <span>• {prevTutorial.readTime}</span>
+                </div>
+              </Link>
+            ) : (
+              <div className="p-5 rounded-xl bg-[#FAFAF8] border border-dashed border-[#E7E7E3] text-center text-[13px] text-[#737373] flex items-center justify-center">
+                <span>First guide in track</span>
+              </div>
+            )}
+
+            {nextTutorial ? (
+              <Link
+                href={`/tutorials/${nextTutorial.categorySlug}/${nextTutorial.slug}`}
+                className="p-5 rounded-xl bg-white border border-[#E7E7E3] hover:border-[#176B50] transition-all hover:shadow-subtle group flex flex-col justify-between sm:text-right"
+              >
+                <div>
+                  <div className="flex items-center justify-start sm:justify-end gap-1.5 text-[12px] font-mono text-[#737373] group-hover:text-[#176B50] mb-2">
+                    <span className="uppercase tracking-wider font-semibold">Next Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                  <h4 className="text-[15px] sm:text-base font-semibold text-[#202124] group-hover:text-[#176B50] transition-colors line-clamp-2 leading-snug">
+                    {nextTutorial.title}
+                  </h4>
+                </div>
+                <div className="flex items-center justify-start sm:justify-end gap-2 mt-3.5 text-[12px] font-mono text-[#737373]">
+                  <span className="px-2 py-0.5 rounded bg-[#FAFAF8] border border-[#E7E7E3]">
+                    {nextTutorial.category}
+                  </span>
+                  <span>• {nextTutorial.readTime}</span>
+                </div>
+              </Link>
+            ) : (
+              <div className="p-5 rounded-xl bg-[#FAFAF8] border border-dashed border-[#E7E7E3] text-center text-[13px] text-[#737373] flex items-center justify-center">
+                <span>Completed all guides in track</span>
+              </div>
+            )}
+          </nav>
 
           {/* Cross-Linking: Related Tools & Related Tutorials */}
           <section className="space-y-6 border-t border-[#E7E7E3] pt-8">

@@ -19,7 +19,7 @@ import AdSlot from "@/components/ads/AdSlot";
 import { categoriesData, getCategoryBySlug } from "@/data/categoriesData";
 import { getTutorialsByCategory } from "@/data/tutorialsData";
 import { toolsData } from "@/data/toolsData";
-import { constructMetadata } from "@/lib/seo";
+import { constructMetadata, siteConfig } from "@/lib/seo";
 
 interface PageProps {
   params: {
@@ -98,11 +98,11 @@ export default function CategoryTutorialsPage({ params }: PageProps) {
     "@type": "CollectionPage",
     name: `${category.name} Tutorials`,
     description: category.description,
-    url: `https://codinghub.dev/tutorials/${category.slug}`,
+    url: `${siteConfig.url}/tutorials/${category.slug}`,
     hasPart: tutorials.map((tut) => ({
       "@type": "Article",
       headline: tut.title,
-      url: `https://codinghub.dev/tutorials/${tut.categorySlug}/${tut.slug}`,
+      url: `${siteConfig.url}/tutorials/${tut.categorySlug}/${tut.slug}`,
     })),
   };
 

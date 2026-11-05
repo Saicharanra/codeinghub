@@ -1,11 +1,34 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import AdSenseScript from "@/components/ads/AdSenseScript";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import CookieConsent from "@/components/common/CookieConsent";
+import Toast from "@/components/common/Toast";
 import { siteConfig } from "@/lib/seo";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-manrope",
+  weight: ["600", "700", "800"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600"],
+});
 
 export const viewport: Viewport = {
   themeColor: "#FAFAF8",
@@ -86,14 +109,18 @@ export default function RootLayout({
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://codinghub.dev/tools?search={search_term_string}",
+        urlTemplate: `${siteConfig.url}/tools?search={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
   };
 
   return (
-    <html lang="en" className="light" style={{ colorScheme: "light" }}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${manrope.variable} ${jetbrainsMono.variable} light`}
+      style={{ colorScheme: "light" }}
+    >
       <head>
         <AdSenseScript />
         <GoogleAnalytics />
@@ -102,13 +129,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJsonLd) }}
         />
       </head>
-      <body className="bg-[#FAFAF8] text-[#202124] min-h-screen flex flex-col antialiased">
+      <body className="bg-[#FAFAF8] text-[#202124] min-h-screen flex flex-col font-sans antialiased">
         <Navbar />
         <main className="flex-1 bg-[#FAFAF8] max-w-[1180px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {children}
         </main>
         <Footer />
         <CookieConsent />
+        <Toast />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { siteConfig } from "@/lib/seo";
 
 export interface BreadcrumbItem {
   label: string;
@@ -20,13 +21,13 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://codinghub.dev",
+        item: siteConfig.url,
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
         position: index + 2,
         name: item.label,
-        ...(item.href ? { item: `https://codinghub.dev${item.href}` } : {}),
+        ...(item.href ? { item: `${siteConfig.url}${item.href}` } : {}),
       })),
     ],
   };

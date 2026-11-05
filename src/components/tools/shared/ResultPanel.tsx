@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { Check, Copy } from "lucide-react";
+import { showToast } from "@/components/common/Toast";
 
 interface ResultPanelProps {
   label: string;
@@ -30,6 +33,7 @@ export default function ResultPanel({
     const textToCopy = copyValue || String(value);
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
+    showToast("Result copied to clipboard");
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -42,10 +46,10 @@ export default function ResultPanel({
 
   return (
     <div
-      className={`p-5 sm:p-6 rounded-lg bg-white border border-[#E7E7E3] space-y-3 shadow-subtle ${className}`}
+      className={`p-5 sm:p-6 rounded-xl bg-white border border-[#E7E7E3] space-y-3 shadow-subtle ${className}`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-mono font-medium uppercase tracking-wider text-[#737373]">
+        <span className="text-[13px] font-mono font-medium uppercase tracking-wider text-[#737373]">
           {label}
         </span>
         <div className="flex items-center gap-2">
@@ -61,11 +65,21 @@ export default function ResultPanel({
           {copyValue && (
             <button
               onClick={handleCopy}
-              className="p-1 text-[#737373] hover:text-[#176B50] rounded transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono text-[#737373] hover:text-[#176B50] hover:bg-[#EBF5F1] transition-colors border border-transparent hover:border-[#C8E3D8]"
               title="Copy result"
               aria-label="Copy result"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#176B50]" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-[#176B50]" />
+                  <span className="text-xs text-[#176B50] font-medium">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span className="text-xs">Copy</span>
+                </>
+              )}
             </button>
           )}
         </div>
@@ -76,7 +90,7 @@ export default function ResultPanel({
       </div>
 
       {description && (
-        <p className="text-xs sm:text-sm text-[#737373] leading-relaxed pt-1">
+        <p className="text-[14px] sm:text-[15px] text-[#737373] leading-relaxed pt-1">
           {description}
         </p>
       )}
